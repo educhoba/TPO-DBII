@@ -9,5 +9,6 @@ namespace Service.DTO
     {
         public int idCarrito { get; set; }
         public int idItem { get; set; }
+        public int cantidad { get; set; }
     }
 }

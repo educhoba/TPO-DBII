@@ -4,3 +4,12 @@ DBII/bin/
 DBII/obj/
 
 packages/
+.vs/DBII/FileContentIndex/
+
+.vs/TPO-DBII/FileContentIndex/
+
+Service/bin/roslyn/
+
+Service/obj/Debug/
+
+Service/obj/Release/

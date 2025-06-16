@@ -84,6 +84,7 @@
     <Compile Include="DTO\CarritoDTO.cs" />
     <Compile Include="DTO\CarritoRowDTO.cs" />
     <Compile Include="DTO\ItemDTO.cs" />
+    <Compile Include="Model\CarritoItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.asmx.cs">
       <DependentUpon>Service.asmx</DependentUpon>

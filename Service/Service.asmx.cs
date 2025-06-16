@@ -1,5 +1,6 @@
 ﻿using Service.DAO;
 using Service.DTO;
+using Service.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -78,31 +79,34 @@ namespace Service
             return new DAOBase<CarritoRowDTO>().Read(id);
         }
         [WebMethod]
-        public List<CarritoRowDTO> GetCarritoRows()
+        public List<CarritoRowDTO> GetCarritoRows(int carritoId)
         {
-            return new DAOBase<CarritoRowDTO>().ReadAll();
+            var rows = new DAOBase<CarritoRowDTO>().ReadAll($"{nameof(CarritoRowDTO.idCarrito)} = {carritoId}");
+            return rows;
         }
         [WebMethod]
-        public void InsertCarritoRow(int idCarrito, int idItem)
+        public void InsertCarritoRow(int idCarrito, int idItem, int cantidad)
         {
             if (idCarrito > 0 && idItem > 0)
                 new DAOBase<CarritoRowDTO>().Insert(new CarritoRowDTO
                 {
                     idCarrito = idCarrito,
-                    idItem = idItem
+                    idItem = idItem,
+                    cantidad = cantidad
                 });
 
             //todo log en otra DB
         }
         [WebMethod]
-        public void UpdateCarritoRow(int idCarrito, int idItem, int id)
+        public void UpdateCarritoRow(int idCarrito, int idItem, int cantidad, int id)
         {
-            if (idCarrito > 0 && idItem > 0) 
+            if (idCarrito > 0 && idItem > 0)
                 new DAOBase<CarritoRowDTO>().Update(new CarritoRowDTO
                 {
                     id = id,
                     idCarrito = idCarrito,
-                    idItem = idItem
+                    idItem = idItem,
+                    cantidad = cantidad
                 });
 
             //todo log en otra DB
@@ -128,20 +132,21 @@ namespace Service
             return new DAOBase<FacturaDTO>().ReadAll();
         }
         [WebMethod]
-        public void InsertFactura(int idPedido, string condicionPago, decimal total)
+        public void InsertFactura(int idPedido, string condicionPago, decimal total, int idUsuario)
         {
             if (idPedido > 0 && condicionPago != null && total > 0)
                 new DAOBase<FacturaDTO>().Insert(new FacturaDTO
                 {
                     condicionPago = condicionPago,
                     idPedido = idPedido,
-                    total = total
+                    total = total,
+                    idUsuario = idUsuario
                 });
 
             //todo log en otra DB
         }
         [WebMethod]
-        public void UpdateFactura(int idPedido, string condicionPago, decimal total, int id)
+        public void UpdateFactura(int idPedido, string condicionPago, decimal total, int idUsuario, int id)
         {
             if (idPedido > 0 && condicionPago != null && total > 0)
                 new DAOBase<FacturaDTO>().Update(new FacturaDTO
@@ -149,7 +154,8 @@ namespace Service
                     id = id,
                     condicionPago = condicionPago,
                     idPedido = idPedido,
-                    total = total
+                    total = total,
+                    idUsuario = idUsuario
                 });
 
             //todo log en otra DB
@@ -223,24 +229,26 @@ namespace Service
             return new DAOBase<PagoDTO>().ReadAll();
         }
         [WebMethod]
-        public void InsertPago(decimal total)
+        public void InsertPago(decimal total, int idUsuario)
         {
             if (total > 0)
                 new DAOBase<PagoDTO>().Insert(new PagoDTO
                 {
-                    total = total
+                    total = total,
+                    idUsuario = idUsuario
                 });
 
             //todo log en otra DB
         }
         [WebMethod]
-        public void UpdatePago(decimal total, int id)
+        public void UpdatePago(decimal total, int idUsuario, int id)
         {
             if (total > 0)
                 new DAOBase<PagoDTO>().Insert(new PagoDTO
                 {
-                    id =id,
-                    total = total
+                    id = id,
+                    total = total,
+                    idUsuario = idUsuario
                 });
 
             //todo log en otra DB
@@ -315,15 +323,15 @@ namespace Service
             return new DAOBase<PedidoDTO>().ReadAll();
         }
         [WebMethod]
-        public void InsertPedido(int idUsuario, string condicionIVA)
+        public int InsertPedido(int idUsuario, string condicionIVA)
         {
             if (idUsuario > 0 && condicionIVA != null)
-                new DAOBase<PedidoDTO>().Insert(new PedidoDTO
+                return new DAOBase<PedidoDTO>().Insert(new PedidoDTO
                 {
                     idUsuario = idUsuario,
                     condicionIVA = condicionIVA
                 });
-
+            return -1;
             //todo log en otra DB
         }
         [WebMethod]
@@ -356,31 +364,14 @@ namespace Service
             return new DAOBase<PedidoRowDTO>().Read(id);
         }
         [WebMethod]
-        public List<PedidoRowDTO> GetPedidoRows()
+        public List<PedidoRowDTO> GetPedidoRows(int idPedido)
         {
-            return new DAOBase<PedidoRowDTO>().ReadAll();
-        }
-        [WebMethod]
-        public void InsertPedidoRow(int idPedido, decimal importe, decimal IVA, decimal descuento, string descripcion)
-        {
-            if (idPedido > 0 &&
-                descripcion != null &&
-                importe > 0 &&
-                IVA >= 0 &&
-                descuento >= 0)
-                new DAOBase<PedidoRowDTO>().Insert(new PedidoRowDTO
-                {
-                    descripcion = descripcion,
-                    descuento = descuento,
-                    idPedido = idPedido,
-                    importe = importe,
-                    IVA = IVA
-                });
 
-            //todo log en otra DB
+            var rows = new DAOBase<PedidoRowDTO>().ReadAll($"{nameof(PedidoRowDTO.idPedido)} = {idPedido}");
+            return rows;
         }
         [WebMethod]
-        public void UpdatePedidoRow(int idPedido, decimal importe, decimal IVA, decimal descuento, string descripcion, int id)
+        public void InsertPedidoRow(int idPedido, decimal importe, decimal IVA, decimal descuento, string descripcion, int cantidad)
         {
             if (idPedido > 0 &&
                 descripcion != null &&
@@ -394,7 +385,28 @@ namespace Service
                     idPedido = idPedido,
                     importe = importe,
                     IVA = IVA,
-                    id = id
+                    cantidad = cantidad
+                });
+
+            //todo log en otra DB
+        }
+        [WebMethod]
+        public void UpdatePedidoRow(int idPedido, decimal importe, decimal IVA, decimal descuento, string descripcion, int cantidad, int id)
+        {
+            if (idPedido > 0 &&
+                descripcion != null &&
+                importe > 0 &&
+                IVA >= 0 &&
+                descuento >= 0)
+                new DAOBase<PedidoRowDTO>().Insert(new PedidoRowDTO
+                {
+                    id = id,
+                    descripcion = descripcion,
+                    descuento = descuento,
+                    idPedido = idPedido,
+                    importe = importe,
+                    IVA = IVA,
+                    cantidad = cantidad
                 });
 
             //todo log en otra DB
@@ -431,7 +443,8 @@ namespace Service
                 {
                     direccion = direccion,
                     documento = documento,
-                    nombre =    nombre
+                    nombre = nombre,
+                    categoria = usuarioCat.LOW.ToString()
                 });
 
             //todo log en otra DB
@@ -460,6 +473,118 @@ namespace Service
 
             //todo log en otra DB
         }
-        #endregion 
+        #endregion
+
+        #region negocio
+
+        [WebMethod]
+        public UsuarioDTO Login(string nombre)
+        {
+            var dao = new DAOBase<UsuarioDTO>();
+
+            return dao.ReadAll($"{nameof(UsuarioDTO.nombre)} = '{nombre}'").FirstOrDefault();
+        }
+        [WebMethod]
+        public void AddItem(UsuarioDTO user, ItemDTO item)
+        {
+            //solo inserta si no existe el item
+            var carrito = GetCarritoFrom(user);
+            if (carrito != null)
+            {
+                var rows = GetCarritoRows(carrito.id);
+                if (rows != null)
+                {
+                    var row = rows.Find(x => x.idItem == item.id);
+                    if (row == null)
+                    {
+                        InsertCarritoRow(carrito.id, item.id, 1);
+                    }
+                }
+            }
+            else
+                throw new Exception("ERROR EN CARRITO");
+        }
+
+        [WebMethod]
+        public CarritoDTO GetCarritoFrom(UsuarioDTO usuario)
+        {
+            //TODO req: solo 1 carrito x usuario
+
+            var carrito = new DAOBase<CarritoDTO>().ReadAll($"{nameof(CarritoDTO.idUsuario)} = {usuario.id}").FirstOrDefault();
+
+            if (carrito == null)
+            {
+                InsertCarrito(usuario.id);
+            }
+
+            carrito = new DAOBase<CarritoDTO>().ReadAll($"{nameof(CarritoDTO.idUsuario)} = {usuario.id}").FirstOrDefault();
+
+            if (carrito == null)
+            {
+                throw new Exception("ERROR EN CARRITO");
+            }
+
+            return carrito;
+        }
+        [WebMethod]
+        public List<CarritoItem> GetCarritoItems(int idCarrito)
+        {
+            var ret = new List<CarritoItem>();
+
+            var rows = GetCarritoRows(idCarrito);
+            var items = GetItems();
+
+            foreach (var row in rows)
+            {
+                var item = items.Find(x => x.id == row.idItem);
+                ret.Add(CarritoItem.dto2Model(row, item));
+            }
+
+            return ret;
+        }
+        [WebMethod]
+        public void NuevoPedido(CarritoDTO carrito, UsuarioDTO usuario, string condicionIVA)
+        {
+            var items = GetCarritoItems(carrito.id);
+
+            int idPedido = InsertPedido(usuario.id, condicionIVA);
+
+            foreach (var item in items)
+            {
+                InsertPedidoRow(idPedido, item.importe, 21, 0, item.descripcion, item.cantidad);
+                DeleteCarritoRow(item.id);
+            }
+        }
+        [WebMethod]
+        public List<PedidoDTO> GetPedidosSinFacturar(UsuarioDTO usuario)
+        {
+            string query = $@"SELECT *
+                                FROM Pedido T0
+                                LEFT JOIN Factura T1 on T0.id = T1.{nameof(FacturaDTO.idPedido)}
+                                WHERE T1.id IS NULL";
+
+            return new DAOBase<PedidoDTO>().ReadQuery(query);
+        }
+        [WebMethod]
+        public void NuevaFactura(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago)
+        {
+            var rows = GetPedidoRows(pedido.id);
+            decimal total = 0;
+            foreach(var r in rows)
+            {
+                total += r.cantidad * r.importe * (1 - r.descuento / 100) * (1 + r.IVA / 100);
+            }
+
+            InsertFactura(pedido.id,condicionPago,total,usuario.id);
+        }
+
+        enum usuarioCat
+        {
+            LOW,
+            MED,
+            TOP
+        }
+        #endregion
+
     }
 }

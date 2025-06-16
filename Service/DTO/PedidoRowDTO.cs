@@ -12,5 +12,6 @@ namespace Service.DTO
         public decimal IVA { get; set; }
         public decimal descuento { get; set; }
         public string descripcion { get; set; }
+        public int cantidad { get; set; }
     }
 }

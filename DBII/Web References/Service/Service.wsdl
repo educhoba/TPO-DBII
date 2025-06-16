@@ -1,0 +1,2315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarrito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoResult" type="tns:CarritoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CarritoDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DTOBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCarritos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCarritosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritosResult" type="tns:ArrayOfCarritoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCarritoDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoDTO" nillable="true" type="tns:CarritoDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCarrito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCarritoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateCarrito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCarritoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteCarrito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCarritoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCarritoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoRowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoRowResult" type="tns:CarritoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CarritoRowDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetCarritoRows">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="carritoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoRowsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoRowsResult" type="tns:ArrayOfCarritoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCarritoRowDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoRowDTO" nillable="true" type="tns:CarritoRowDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertCarritoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertCarritoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateCarritoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCarritoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteCarritoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCarritoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFacturaResult" type="tns:FacturaDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FacturaDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="condicionPago" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetFacturas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFacturasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFacturasResult" type="tns:ArrayOfFacturaDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFacturaDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FacturaDTO" nillable="true" type="tns:FacturaDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionPago" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertFacturaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionPago" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFacturaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFacturaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemResult" type="tns:ItemDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ItemDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetItems">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemsResult" type="tns:ArrayOfItemDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfItemDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemDTO" nillable="true" type="tns:ItemDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="precio" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="precio" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPagoResult" type="tns:PagoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PagoDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetPagos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPagosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPagosResult" type="tns:ArrayOfPagoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPagoDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PagoDTO" nillable="true" type="tns:PagoDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdatePago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletePago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPagoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagoRowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPagoRowResult" type="tns:PagoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PagoRowDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idPago" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="idFactura" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetPagoRows">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPagoRowsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPagoRowsResult" type="tns:ArrayOfPagoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPagoRowDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PagoRowDTO" nillable="true" type="tns:PagoRowDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPagoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPago" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idFactura" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPagoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdatePagoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPago" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idFactura" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePagoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletePagoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePagoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPedidoResult" type="tns:PedidoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PedidoDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="condicionIVA" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetPedidos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPedidosResult" type="tns:ArrayOfPedidoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPedidoDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PedidoDTO" nillable="true" type="tns:PedidoDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionIVA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPedidoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionIVA" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePedidoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletePedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePedidoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPedidoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPedidoRowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPedidoRowResult" type="tns:PedidoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PedidoRowDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="IVA" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="descuento" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetPedidoRows">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPedidoRowsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPedidoRowsResult" type="tns:ArrayOfPedidoRowDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPedidoRowDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PedidoRowDTO" nillable="true" type="tns:PedidoRowDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPedidoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="IVA" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="descuento" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPedidoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdatePedidoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idPedido" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="IVA" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="descuento" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePedidoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletePedidoRow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePedidoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsuarioResult" type="tns:UsuarioDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UsuarioDTO">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DTOBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUsuarios">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUsuariosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsuariosResult" type="tns:ArrayOfUsuarioDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuarioDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UsuarioDTO" nillable="true" type="tns:UsuarioDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUsuarioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUsuarioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUsuarioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:UsuarioDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="tns:ItemDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCarritoFrom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoFromResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoFromResult" type="tns:CarritoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCarritoItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoItemsResult" type="tns:ArrayOfCarritoItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCarritoItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoItem" nillable="true" type="tns:CarritoItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CarritoItem">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CarritoRowDTO">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="NuevoPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="carrito" type="tns:CarritoDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionIVA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NuevoPedidoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPedidosSinFacturar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPedidosSinFacturarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPedidosSinFacturarResult" type="tns:ArrayOfPedidoDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NuevaFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="tns:PedidoDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicionPago" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NuevaFacturaResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarrito" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarritos" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCarritoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCarrito" />
+  </wsdl:message>
+  <wsdl:message name="InsertCarritoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCarrito" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarritoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCarrito" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarritoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarritoRow" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoRowsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarritoRows" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoRowsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritoRowsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertCarritoRow" />
+  </wsdl:message>
+  <wsdl:message name="InsertCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertCarritoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCarritoRow" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCarritoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCarritoRow" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCarritoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFactura" />
+  </wsdl:message>
+  <wsdl:message name="GetFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFacturasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFacturas" />
+  </wsdl:message>
+  <wsdl:message name="GetFacturasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertFactura" />
+  </wsdl:message>
+  <wsdl:message name="InsertFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFactura" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFactura" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItem" />
+  </wsdl:message>
+  <wsdl:message name="GetItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="GetItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertItemSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertItem" />
+  </wsdl:message>
+  <wsdl:message name="InsertItemSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateItemSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateItem" />
+  </wsdl:message>
+  <wsdl:message name="UpdateItemSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteItemSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteItem" />
+  </wsdl:message>
+  <wsdl:message name="DeleteItemSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPago" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPagos" />
+  </wsdl:message>
+  <wsdl:message name="GetPagosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPago" />
+  </wsdl:message>
+  <wsdl:message name="InsertPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePagoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePago" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePagoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePagoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePago" />
+  </wsdl:message>
+  <wsdl:message name="DeletePagoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPagoRow" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoRowsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPagoRows" />
+  </wsdl:message>
+  <wsdl:message name="GetPagoRowsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagoRowsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPagoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPagoRow" />
+  </wsdl:message>
+  <wsdl:message name="InsertPagoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPagoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePagoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePagoRow" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePagoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePagoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePagoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePagoRow" />
+  </wsdl:message>
+  <wsdl:message name="DeletePagoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePagoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPedido" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPedidos" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPedido" />
+  </wsdl:message>
+  <wsdl:message name="InsertPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePedido" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePedido" />
+  </wsdl:message>
+  <wsdl:message name="DeletePedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPedidoRow" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPedidoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoRowsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPedidoRows" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidoRowsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPedidoRowsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPedidoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPedidoRow" />
+  </wsdl:message>
+  <wsdl:message name="InsertPedidoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPedidoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePedidoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePedidoRow" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePedidoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePedidoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePedidoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePedidoRow" />
+  </wsdl:message>
+  <wsdl:message name="DeletePedidoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePedidoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuariosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="GetUsuariosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUsuario" />
+  </wsdl:message>
+  <wsdl:message name="InsertUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUsuario" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUsuario" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddItemSoapIn">
+    <wsdl:part name="parameters" element="tns:AddItem" />
+  </wsdl:message>
+  <wsdl:message name="AddItemSoapOut">
+    <wsdl:part name="parameters" element="tns:AddItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoFromSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarritoFrom" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoFromSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritoFromResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCarritoItems" />
+  </wsdl:message>
+  <wsdl:message name="GetCarritoItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCarritoItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NuevoPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:NuevoPedido" />
+  </wsdl:message>
+  <wsdl:message name="NuevoPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:NuevoPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidosSinFacturarSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPedidosSinFacturar" />
+  </wsdl:message>
+  <wsdl:message name="GetPedidosSinFacturarSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPedidosSinFacturarResponse" />
+  </wsdl:message>
+  <wsdl:message name="NuevaFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:NuevaFactura" />
+  </wsdl:message>
+  <wsdl:message name="NuevaFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:NuevaFacturaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarrito">
+      <wsdl:input message="tns:GetCarritoSoapIn" />
+      <wsdl:output message="tns:GetCarritoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritos">
+      <wsdl:input message="tns:GetCarritosSoapIn" />
+      <wsdl:output message="tns:GetCarritosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarrito">
+      <wsdl:input message="tns:InsertCarritoSoapIn" />
+      <wsdl:output message="tns:InsertCarritoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarrito">
+      <wsdl:input message="tns:UpdateCarritoSoapIn" />
+      <wsdl:output message="tns:UpdateCarritoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarrito">
+      <wsdl:input message="tns:DeleteCarritoSoapIn" />
+      <wsdl:output message="tns:DeleteCarritoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRow">
+      <wsdl:input message="tns:GetCarritoRowSoapIn" />
+      <wsdl:output message="tns:GetCarritoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRows">
+      <wsdl:input message="tns:GetCarritoRowsSoapIn" />
+      <wsdl:output message="tns:GetCarritoRowsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarritoRow">
+      <wsdl:input message="tns:InsertCarritoRowSoapIn" />
+      <wsdl:output message="tns:InsertCarritoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <wsdl:input message="tns:UpdateCarritoRowSoapIn" />
+      <wsdl:output message="tns:UpdateCarritoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarritoRow">
+      <wsdl:input message="tns:DeleteCarritoRowSoapIn" />
+      <wsdl:output message="tns:DeleteCarritoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFactura">
+      <wsdl:input message="tns:GetFacturaSoapIn" />
+      <wsdl:output message="tns:GetFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFacturas">
+      <wsdl:input message="tns:GetFacturasSoapIn" />
+      <wsdl:output message="tns:GetFacturasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertFactura">
+      <wsdl:input message="tns:InsertFacturaSoapIn" />
+      <wsdl:output message="tns:InsertFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFactura">
+      <wsdl:input message="tns:UpdateFacturaSoapIn" />
+      <wsdl:output message="tns:UpdateFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFactura">
+      <wsdl:input message="tns:DeleteFacturaSoapIn" />
+      <wsdl:output message="tns:DeleteFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItem">
+      <wsdl:input message="tns:GetItemSoapIn" />
+      <wsdl:output message="tns:GetItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input message="tns:GetItemsSoapIn" />
+      <wsdl:output message="tns:GetItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertItem">
+      <wsdl:input message="tns:InsertItemSoapIn" />
+      <wsdl:output message="tns:InsertItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItem">
+      <wsdl:input message="tns:UpdateItemSoapIn" />
+      <wsdl:output message="tns:UpdateItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItem">
+      <wsdl:input message="tns:DeleteItemSoapIn" />
+      <wsdl:output message="tns:DeleteItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPago">
+      <wsdl:input message="tns:GetPagoSoapIn" />
+      <wsdl:output message="tns:GetPagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPagos">
+      <wsdl:input message="tns:GetPagosSoapIn" />
+      <wsdl:output message="tns:GetPagosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPago">
+      <wsdl:input message="tns:InsertPagoSoapIn" />
+      <wsdl:output message="tns:InsertPagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePago">
+      <wsdl:input message="tns:UpdatePagoSoapIn" />
+      <wsdl:output message="tns:UpdatePagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePago">
+      <wsdl:input message="tns:DeletePagoSoapIn" />
+      <wsdl:output message="tns:DeletePagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRow">
+      <wsdl:input message="tns:GetPagoRowSoapIn" />
+      <wsdl:output message="tns:GetPagoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRows">
+      <wsdl:input message="tns:GetPagoRowsSoapIn" />
+      <wsdl:output message="tns:GetPagoRowsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPagoRow">
+      <wsdl:input message="tns:InsertPagoRowSoapIn" />
+      <wsdl:output message="tns:InsertPagoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePagoRow">
+      <wsdl:input message="tns:UpdatePagoRowSoapIn" />
+      <wsdl:output message="tns:UpdatePagoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePagoRow">
+      <wsdl:input message="tns:DeletePagoRowSoapIn" />
+      <wsdl:output message="tns:DeletePagoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPedido">
+      <wsdl:input message="tns:GetPedidoSoapIn" />
+      <wsdl:output message="tns:GetPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidos">
+      <wsdl:input message="tns:GetPedidosSoapIn" />
+      <wsdl:output message="tns:GetPedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedido">
+      <wsdl:input message="tns:InsertPedidoSoapIn" />
+      <wsdl:output message="tns:InsertPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedido">
+      <wsdl:input message="tns:UpdatePedidoSoapIn" />
+      <wsdl:output message="tns:UpdatePedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedido">
+      <wsdl:input message="tns:DeletePedidoSoapIn" />
+      <wsdl:output message="tns:DeletePedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRow">
+      <wsdl:input message="tns:GetPedidoRowSoapIn" />
+      <wsdl:output message="tns:GetPedidoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRows">
+      <wsdl:input message="tns:GetPedidoRowsSoapIn" />
+      <wsdl:output message="tns:GetPedidoRowsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedidoRow">
+      <wsdl:input message="tns:InsertPedidoRowSoapIn" />
+      <wsdl:output message="tns:InsertPedidoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedidoRow">
+      <wsdl:input message="tns:UpdatePedidoRowSoapIn" />
+      <wsdl:output message="tns:UpdatePedidoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedidoRow">
+      <wsdl:input message="tns:DeletePedidoRowSoapIn" />
+      <wsdl:output message="tns:DeletePedidoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <wsdl:input message="tns:GetUsuarioSoapIn" />
+      <wsdl:output message="tns:GetUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarios">
+      <wsdl:input message="tns:GetUsuariosSoapIn" />
+      <wsdl:output message="tns:GetUsuariosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUsuario">
+      <wsdl:input message="tns:InsertUsuarioSoapIn" />
+      <wsdl:output message="tns:InsertUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsuario">
+      <wsdl:input message="tns:UpdateUsuarioSoapIn" />
+      <wsdl:output message="tns:UpdateUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsuario">
+      <wsdl:input message="tns:DeleteUsuarioSoapIn" />
+      <wsdl:output message="tns:DeleteUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItem">
+      <wsdl:input message="tns:AddItemSoapIn" />
+      <wsdl:output message="tns:AddItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoFrom">
+      <wsdl:input message="tns:GetCarritoFromSoapIn" />
+      <wsdl:output message="tns:GetCarritoFromSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoItems">
+      <wsdl:input message="tns:GetCarritoItemsSoapIn" />
+      <wsdl:output message="tns:GetCarritoItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NuevoPedido">
+      <wsdl:input message="tns:NuevoPedidoSoapIn" />
+      <wsdl:output message="tns:NuevoPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidosSinFacturar">
+      <wsdl:input message="tns:GetPedidosSinFacturarSoapIn" />
+      <wsdl:output message="tns:GetPedidosSinFacturarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NuevaFactura">
+      <wsdl:input message="tns:NuevaFacturaSoapIn" />
+      <wsdl:output message="tns:NuevaFacturaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarrito">
+      <soap:operation soapAction="http://tempuri.org/GetCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritos">
+      <soap:operation soapAction="http://tempuri.org/GetCarritos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarrito">
+      <soap:operation soapAction="http://tempuri.org/InsertCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarrito">
+      <soap:operation soapAction="http://tempuri.org/UpdateCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarrito">
+      <soap:operation soapAction="http://tempuri.org/DeleteCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/GetCarritoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRows">
+      <soap:operation soapAction="http://tempuri.org/GetCarritoRows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/InsertCarritoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFactura">
+      <soap:operation soapAction="http://tempuri.org/GetFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFacturas">
+      <soap:operation soapAction="http://tempuri.org/GetFacturas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertFactura">
+      <soap:operation soapAction="http://tempuri.org/InsertFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFactura">
+      <soap:operation soapAction="http://tempuri.org/UpdateFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFactura">
+      <soap:operation soapAction="http://tempuri.org/DeleteFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItem">
+      <soap:operation soapAction="http://tempuri.org/GetItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertItem">
+      <soap:operation soapAction="http://tempuri.org/InsertItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItem">
+      <soap:operation soapAction="http://tempuri.org/UpdateItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItem">
+      <soap:operation soapAction="http://tempuri.org/DeleteItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPago">
+      <soap:operation soapAction="http://tempuri.org/GetPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagos">
+      <soap:operation soapAction="http://tempuri.org/GetPagos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPago">
+      <soap:operation soapAction="http://tempuri.org/InsertPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePago">
+      <soap:operation soapAction="http://tempuri.org/UpdatePago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePago">
+      <soap:operation soapAction="http://tempuri.org/DeletePago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRow">
+      <soap:operation soapAction="http://tempuri.org/GetPagoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRows">
+      <soap:operation soapAction="http://tempuri.org/GetPagoRows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPagoRow">
+      <soap:operation soapAction="http://tempuri.org/InsertPagoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePagoRow">
+      <soap:operation soapAction="http://tempuri.org/UpdatePagoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePagoRow">
+      <soap:operation soapAction="http://tempuri.org/DeletePagoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedido">
+      <soap:operation soapAction="http://tempuri.org/GetPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidos">
+      <soap:operation soapAction="http://tempuri.org/GetPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedido">
+      <soap:operation soapAction="http://tempuri.org/InsertPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedido">
+      <soap:operation soapAction="http://tempuri.org/UpdatePedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedido">
+      <soap:operation soapAction="http://tempuri.org/DeletePedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRow">
+      <soap:operation soapAction="http://tempuri.org/GetPedidoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRows">
+      <soap:operation soapAction="http://tempuri.org/GetPedidoRows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedidoRow">
+      <soap:operation soapAction="http://tempuri.org/InsertPedidoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedidoRow">
+      <soap:operation soapAction="http://tempuri.org/UpdatePedidoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedidoRow">
+      <soap:operation soapAction="http://tempuri.org/DeletePedidoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <soap:operation soapAction="http://tempuri.org/GetUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarios">
+      <soap:operation soapAction="http://tempuri.org/GetUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUsuario">
+      <soap:operation soapAction="http://tempuri.org/InsertUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsuario">
+      <soap:operation soapAction="http://tempuri.org/UpdateUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsuario">
+      <soap:operation soapAction="http://tempuri.org/DeleteUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItem">
+      <soap:operation soapAction="http://tempuri.org/AddItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoFrom">
+      <soap:operation soapAction="http://tempuri.org/GetCarritoFrom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoItems">
+      <soap:operation soapAction="http://tempuri.org/GetCarritoItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NuevoPedido">
+      <soap:operation soapAction="http://tempuri.org/NuevoPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidosSinFacturar">
+      <soap:operation soapAction="http://tempuri.org/GetPedidosSinFacturar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NuevaFactura">
+      <soap:operation soapAction="http://tempuri.org/NuevaFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarrito">
+      <soap12:operation soapAction="http://tempuri.org/GetCarrito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritos">
+      <soap12:operation soapAction="http://tempuri.org/GetCarritos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarrito">
+      <soap12:operation soapAction="http://tempuri.org/InsertCarrito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarrito">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCarrito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarrito">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCarrito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/GetCarritoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoRows">
+      <soap12:operation soapAction="http://tempuri.org/GetCarritoRows" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/InsertCarritoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFactura">
+      <soap12:operation soapAction="http://tempuri.org/GetFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFacturas">
+      <soap12:operation soapAction="http://tempuri.org/GetFacturas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertFactura">
+      <soap12:operation soapAction="http://tempuri.org/InsertFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFactura">
+      <soap12:operation soapAction="http://tempuri.org/UpdateFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFactura">
+      <soap12:operation soapAction="http://tempuri.org/DeleteFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItem">
+      <soap12:operation soapAction="http://tempuri.org/GetItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap12:operation soapAction="http://tempuri.org/GetItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertItem">
+      <soap12:operation soapAction="http://tempuri.org/InsertItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItem">
+      <soap12:operation soapAction="http://tempuri.org/UpdateItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItem">
+      <soap12:operation soapAction="http://tempuri.org/DeleteItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPago">
+      <soap12:operation soapAction="http://tempuri.org/GetPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagos">
+      <soap12:operation soapAction="http://tempuri.org/GetPagos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPago">
+      <soap12:operation soapAction="http://tempuri.org/InsertPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePago">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePago">
+      <soap12:operation soapAction="http://tempuri.org/DeletePago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRow">
+      <soap12:operation soapAction="http://tempuri.org/GetPagoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagoRows">
+      <soap12:operation soapAction="http://tempuri.org/GetPagoRows" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPagoRow">
+      <soap12:operation soapAction="http://tempuri.org/InsertPagoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePagoRow">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePagoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePagoRow">
+      <soap12:operation soapAction="http://tempuri.org/DeletePagoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedido">
+      <soap12:operation soapAction="http://tempuri.org/GetPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidos">
+      <soap12:operation soapAction="http://tempuri.org/GetPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedido">
+      <soap12:operation soapAction="http://tempuri.org/InsertPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedido">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedido">
+      <soap12:operation soapAction="http://tempuri.org/DeletePedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRow">
+      <soap12:operation soapAction="http://tempuri.org/GetPedidoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidoRows">
+      <soap12:operation soapAction="http://tempuri.org/GetPedidoRows" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPedidoRow">
+      <soap12:operation soapAction="http://tempuri.org/InsertPedidoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePedidoRow">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePedidoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePedidoRow">
+      <soap12:operation soapAction="http://tempuri.org/DeletePedidoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuario">
+      <soap12:operation soapAction="http://tempuri.org/GetUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarios">
+      <soap12:operation soapAction="http://tempuri.org/GetUsuarios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUsuario">
+      <soap12:operation soapAction="http://tempuri.org/InsertUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsuario">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUsuario">
+      <soap12:operation soapAction="http://tempuri.org/DeleteUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItem">
+      <soap12:operation soapAction="http://tempuri.org/AddItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoFrom">
+      <soap12:operation soapAction="http://tempuri.org/GetCarritoFrom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarritoItems">
+      <soap12:operation soapAction="http://tempuri.org/GetCarritoItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NuevoPedido">
+      <soap12:operation soapAction="http://tempuri.org/NuevoPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPedidosSinFacturar">
+      <soap12:operation soapAction="http://tempuri.org/GetPedidosSinFacturar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NuevaFactura">
+      <soap12:operation soapAction="http://tempuri.org/NuevaFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="https://localhost:44325/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="https://localhost:44325/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

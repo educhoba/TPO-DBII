@@ -10,5 +10,6 @@ namespace Service.DTO
         public string nombre { get; set; }
         public string direccion { get; set; }
         public string documento { get; set; }
+        public string categoria { get; set; }
     }
 }

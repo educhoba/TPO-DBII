@@ -10,5 +10,6 @@ namespace Service.DTO
         public int idPedido { get; set; }
         public string condicionPago { get; set; }  
         public decimal total { get; set; }  
+        public int idUsuario { get; set; }  
     }
 }
