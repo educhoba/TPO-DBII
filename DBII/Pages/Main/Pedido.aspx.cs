@@ -25,6 +25,7 @@ namespace DBII.Pages.Main
             {
                 UsuarioDTO user = GetUsuarioSession();
                 var pedidos = ws.GetPedidosSinFacturar(user);
+                gvList.DataSource = pedidos;
                 gvList.DataBind();
             }
             catch(Exception ex)

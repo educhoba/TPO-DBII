@@ -229,15 +229,17 @@ namespace Service
             return new DAOBase<PagoDTO>().ReadAll();
         }
         [WebMethod]
-        public void InsertPago(decimal total, int idUsuario)
+        public int InsertPago(decimal total, int idUsuario)
         {
             if (total > 0)
-                new DAOBase<PagoDTO>().Insert(new PagoDTO
+            {
+                return new DAOBase<PagoDTO>().Insert(new PagoDTO
                 {
                     total = total,
                     idUsuario = idUsuario
                 });
-
+            }
+            return -1;
             //todo log en otra DB
         }
         [WebMethod]
@@ -558,25 +560,57 @@ namespace Service
         [WebMethod]
         public List<PedidoDTO> GetPedidosSinFacturar(UsuarioDTO usuario)
         {
-            string query = $@"SELECT *
+            string query = $@"SELECT t0.*
                                 FROM Pedido T0
                                 LEFT JOIN Factura T1 on T0.id = T1.{nameof(FacturaDTO.idPedido)}
                                 WHERE T1.id IS NULL";
 
             return new DAOBase<PedidoDTO>().ReadQuery(query);
         }
+
         [WebMethod]
         public void NuevaFactura(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago)
         {
             var rows = GetPedidoRows(pedido.id);
             decimal total = 0;
-            foreach(var r in rows)
+            foreach (var r in rows)
             {
                 total += r.cantidad * r.importe * (1 - r.descuento / 100) * (1 + r.IVA / 100);
             }
 
-            InsertFactura(pedido.id,condicionPago,total,usuario.id);
+            InsertFactura(pedido.id, condicionPago, total, usuario.id);
+            //todo actualizar stock de articulos
         }
+
+        [WebMethod]
+        public List<FacturaDTO> GetFacturasSinPagar(UsuarioDTO usuario)
+        {
+            string query = $@"SELECT t0.*
+                                FROM Factura T0
+                                LEFT JOIN PagoRow T1 on T0.id = T1.{nameof(PagoRowDTO.idFactura)}
+                                WHERE T1.id IS NULL";
+
+            return new DAOBase<FacturaDTO>().ReadQuery(query);
+        }
+
+        [WebMethod]
+        public void NuevoPago(List<FacturaDTO> facturas, UsuarioDTO usuario, decimal total)
+        {
+
+            int idPago = InsertPago(total, usuario.id);
+
+            foreach (var f in facturas)
+            {
+                InsertPagoRow(idPago, f.id, f.total);
+            }
+        }
+
+        [WebMethod]
+        public List<PagoDTO> GetPagosDeUsuario(UsuarioDTO usuario)
+        {
+            return new DAOBase<PagoDTO>().ReadAll($"{nameof(PagoDTO.idUsuario)} = {usuario.id}");
+        }
+
 
         enum usuarioCat
         {

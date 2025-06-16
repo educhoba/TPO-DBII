@@ -136,6 +136,12 @@ namespace DBII.Service {
         
         private System.Threading.SendOrPostCallback NuevaFacturaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetFacturasSinPagarOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback NuevoPagoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPagosDeUsuarioOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -332,6 +338,15 @@ namespace DBII.Service {
         
         /// <remarks/>
         public event NuevaFacturaCompletedEventHandler NuevaFacturaCompleted;
+        
+        /// <remarks/>
+        public event GetFacturasSinPagarCompletedEventHandler GetFacturasSinPagarCompleted;
+        
+        /// <remarks/>
+        public event NuevoPagoCompletedEventHandler NuevoPagoCompleted;
+        
+        /// <remarks/>
+        public event GetPagosDeUsuarioCompletedEventHandler GetPagosDeUsuarioCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1016,10 +1031,11 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertPago", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void InsertPago(decimal total, int idUsuario) {
-            this.Invoke("InsertPago", new object[] {
+        public int InsertPago(decimal total, int idUsuario) {
+            object[] results = this.Invoke("InsertPago", new object[] {
                         total,
                         idUsuario});
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -1040,7 +1056,7 @@ namespace DBII.Service {
         private void OnInsertPagoOperationCompleted(object arg) {
             if ((this.InsertPagoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.InsertPagoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.InsertPagoCompleted(this, new InsertPagoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1926,6 +1942,96 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFacturasSinPagar", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public FacturaDTO[] GetFacturasSinPagar(UsuarioDTO usuario) {
+            object[] results = this.Invoke("GetFacturasSinPagar", new object[] {
+                        usuario});
+            return ((FacturaDTO[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFacturasSinPagarAsync(UsuarioDTO usuario) {
+            this.GetFacturasSinPagarAsync(usuario, null);
+        }
+        
+        /// <remarks/>
+        public void GetFacturasSinPagarAsync(UsuarioDTO usuario, object userState) {
+            if ((this.GetFacturasSinPagarOperationCompleted == null)) {
+                this.GetFacturasSinPagarOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFacturasSinPagarOperationCompleted);
+            }
+            this.InvokeAsync("GetFacturasSinPagar", new object[] {
+                        usuario}, this.GetFacturasSinPagarOperationCompleted, userState);
+        }
+        
+        private void OnGetFacturasSinPagarOperationCompleted(object arg) {
+            if ((this.GetFacturasSinPagarCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFacturasSinPagarCompleted(this, new GetFacturasSinPagarCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/NuevoPago", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void NuevoPago(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total) {
+            this.Invoke("NuevoPago", new object[] {
+                        facturas,
+                        usuario,
+                        total});
+        }
+        
+        /// <remarks/>
+        public void NuevoPagoAsync(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total) {
+            this.NuevoPagoAsync(facturas, usuario, total, null);
+        }
+        
+        /// <remarks/>
+        public void NuevoPagoAsync(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total, object userState) {
+            if ((this.NuevoPagoOperationCompleted == null)) {
+                this.NuevoPagoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNuevoPagoOperationCompleted);
+            }
+            this.InvokeAsync("NuevoPago", new object[] {
+                        facturas,
+                        usuario,
+                        total}, this.NuevoPagoOperationCompleted, userState);
+        }
+        
+        private void OnNuevoPagoOperationCompleted(object arg) {
+            if ((this.NuevoPagoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.NuevoPagoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetPagosDeUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PagoDTO[] GetPagosDeUsuario(UsuarioDTO usuario) {
+            object[] results = this.Invoke("GetPagosDeUsuario", new object[] {
+                        usuario});
+            return ((PagoDTO[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPagosDeUsuarioAsync(UsuarioDTO usuario) {
+            this.GetPagosDeUsuarioAsync(usuario, null);
+        }
+        
+        /// <remarks/>
+        public void GetPagosDeUsuarioAsync(UsuarioDTO usuario, object userState) {
+            if ((this.GetPagosDeUsuarioOperationCompleted == null)) {
+                this.GetPagosDeUsuarioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPagosDeUsuarioOperationCompleted);
+            }
+            this.InvokeAsync("GetPagosDeUsuario", new object[] {
+                        usuario}, this.GetPagosDeUsuarioOperationCompleted, userState);
+        }
+        
+        private void OnGetPagosDeUsuarioOperationCompleted(object arg) {
+            if ((this.GetPagosDeUsuarioCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPagosDeUsuarioCompleted(this, new GetPagosDeUsuarioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2010,6 +2116,8 @@ namespace DBII.Service {
         
         private string documentoField;
         
+        private string categoriaField;
+        
         /// <remarks/>
         public string nombre {
             get {
@@ -2037,6 +2145,16 @@ namespace DBII.Service {
             }
             set {
                 this.documentoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string categoria {
+            get {
+                return this.categoriaField;
+            }
+            set {
+                this.categoriaField = value;
             }
         }
     }
@@ -2750,7 +2868,29 @@ namespace DBII.Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void InsertPagoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void InsertPagoCompletedEventHandler(object sender, InsertPagoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertPagoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertPagoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -3153,6 +3293,62 @@ namespace DBII.Service {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void NuevaFacturaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetFacturasSinPagarCompletedEventHandler(object sender, GetFacturasSinPagarCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFacturasSinPagarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFacturasSinPagarCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public FacturaDTO[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((FacturaDTO[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void NuevoPagoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPagosDeUsuarioCompletedEventHandler(object sender, GetPagosDeUsuarioCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPagosDeUsuarioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPagosDeUsuarioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public PagoDTO[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((PagoDTO[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

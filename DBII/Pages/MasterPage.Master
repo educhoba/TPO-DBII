@@ -38,7 +38,7 @@
                             <a class="nav-link" href="\Pages\Main\Factura.aspx">Factura</a>
                         </li>
                         <li class="nav-item" id="li1" runat="server">
-                            <a class="nav-link" href="\Pages\Master\Pago.aspx">Pago</a>
+                            <a class="nav-link" href="\Pages\Main\Pago.aspx">Pago</a>
                         </li>
                     </ul>
                     <div role="button">
