@@ -21,10 +21,8 @@ namespace DBII.Pages.Main
 
         private void reloadCarrito()
         {
-            UsuarioDTO user = GetUsuarioSession();
-            CarritoDTO carrito = ws.GetCarritoFrom(user);
-            Session.Add(MasterPage.CARRITO, carrito);
-            gvList.DataSource = ws.GetCarritoItems(carrito.id);
+            UserSession user = GetUsuarioSession();
+            gvList.DataSource = ws.GetCarritoItems(user);
             gvList.DataBind();
         }
 
@@ -36,26 +34,28 @@ namespace DBII.Pages.Main
 
                 GridViewRow row = gvList.Rows[index];
 
-                int id = (int)gvList.DataKeys[index].Value;
-                var item = ws.GetCarritoRow(id);
+                int idItem = (int)gvList.DataKeys[index].Value;
+                UserSession user = GetUsuarioSession();
+                var items = ws.GetCarritoItems(user);
+                var item = items.First(x=>x.IdItem == idItem);
 
                 if (e.CommandName == "Agregar")
                 {
-                    item.cantidad++;
+                    item.Cantidad++;
                     //ws.UpdateCarritoRow
                 }
                 else if (e.CommandName == "Restar")
                 {
-                    item.cantidad--;
+                    item.Cantidad--;
                 }
 
-                if (e.CommandName == "Eliminar" || item.cantidad == 0)
+                if (e.CommandName == "Eliminar" || item.Cantidad == 0)
                 {
-                    ws.DeleteCarritoRow(id);
+                    ws.DeleteCarritoRow(user,idItem);
                 }
                 else
                 {
-                    ws.UpdateCarritoRow(item.idCarrito, item.idItem, item.cantidad, item.id);
+                    ws.UpdateCarritoRow(user,item.IdItem, item.Cantidad);
                 }
 
                 reloadCarrito();
@@ -65,37 +65,37 @@ namespace DBII.Pages.Main
                 lbError.Text = ex.Message;
             }
         }
-        public UsuarioDTO GetUsuarioSession()
+        public UserSession GetUsuarioSession()
         {
-            //TODO recuperarla de redis?
-            UsuarioDTO user = (UsuarioDTO)Session[MasterPage.USER];
-            if (user == null)
-                Response.Redirect("~\\Pages\\Login.aspx");
+            var user = ws.GetUser();
             return user;
         }
-        public CarritoDTO GetCarritoSession()
+        public List<CarritoItemSession> GetCarritoSession(UserSession user)
         {
-            //TODO recuperarla de redis?
-            CarritoDTO var = (CarritoDTO)Session[MasterPage.CARRITO];
-            if (var == null)
-                Response.Redirect("~\\Pages\\Main\\Carrito.aspx");
-
-            return var;
+            var carrito = ws.GetCarritoItems(user);
+            return carrito?.ToList();
         }
 
         protected void btVolver_Click(object sender, EventArgs e)
         {
-            //TODO redis volver atras PRIORIDAD
+            try
+            {
+                gvList.DataSource = ws.RollBackCarrito(GetUsuarioSession());
+                gvList.DataBind();
+            }
+            catch(Exception ex)
+            {
+                lbError.Text = ex.Message;
+            }
         }
 
         protected void btPedido_Click(object sender, EventArgs e)
         {
             try
             {
-                var carrito = GetCarritoSession();
                 var user = GetUsuarioSession();
                 var condicion = ddlIVA.SelectedValue;
-                ws.NuevoPedido(carrito, user, condicion);
+                ws.NuevoPedido(user, condicion);
                 reloadCarrito();
             }
             catch(Exception ex)

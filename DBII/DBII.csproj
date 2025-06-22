@@ -78,22 +78,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\Service\CarritoItem.datasource">
+    <Content Include="Web References\Service\ItemEnriquecido.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\Service\ItemEnriquecido.datasource">
+    <Content Include="Web References\Service\CarritoItemSession.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\Service\CarritoDTO1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\Service\CarritoRowDTO1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Web References\Service\FacturaDTO1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -181,6 +175,9 @@
     <None Include="packages.config" />
     <None Include="Web References\Service\Service.wsdl" />
     <Content Include="Web References\Service\UsuarioDTO1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\Service\UserSession.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">

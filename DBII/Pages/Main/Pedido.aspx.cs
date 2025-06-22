@@ -23,7 +23,7 @@ namespace DBII.Pages.Main
         {
             try
             {
-                UsuarioDTO user = GetUsuarioSession();
+                UserSession user = GetUsuarioSession();
                 var pedidos = ws.GetPedidosSinFacturar(user);
                 gvList.DataSource = pedidos;
                 gvList.DataBind();
@@ -38,7 +38,7 @@ namespace DBII.Pages.Main
         {
             try
             {
-                UsuarioDTO user = GetUsuarioSession();
+                UserSession user = GetUsuarioSession();
                 PedidoDTO pedido = GetPedidoSession();
                 string condicion = ddlPago.SelectedValue;
 
@@ -87,12 +87,9 @@ namespace DBII.Pages.Main
                 lbError.Text = ex.Message;
             }
         }
-        public UsuarioDTO GetUsuarioSession()
+        public UserSession GetUsuarioSession()
         {
-            //TODO recuperarla de redis?
-            UsuarioDTO user = (UsuarioDTO)Session[MasterPage.USER];
-            if (user == null)
-                Response.Redirect("~\\Pages\\Login.aspx");
+            var user = ws.GetUser();
             return user;
         }
         public PedidoDTO GetPedidoSession()

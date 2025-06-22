@@ -34,26 +34,6 @@ namespace DBII.Service {
         
         private System.Threading.SendOrPostCallback HelloMongoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetCarritoOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetCarritosOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback InsertCarritoOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback UpdateCarritoOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback DeleteCarritoOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetCarritoRowOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetCarritoRowsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback InsertCarritoRowOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback UpdateCarritoRowOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback DeleteCarritoRowOperationCompleted;
-        
         private System.Threading.SendOrPostCallback GetFacturaOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetFacturasOperationCompleted;
@@ -126,11 +106,19 @@ namespace DBII.Service {
         
         private System.Threading.SendOrPostCallback LoginOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LogOutOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetUserOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AddItemOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetCarritoFromOperationCompleted;
+        private System.Threading.SendOrPostCallback DeleteCarritoRowOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateCarritoRowOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetCarritoItemsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RollBackCarritoOperationCompleted;
         
         private System.Threading.SendOrPostCallback NuevoPedidoOperationCompleted;
         
@@ -189,36 +177,6 @@ namespace DBII.Service {
         
         /// <remarks/>
         public event HelloMongoCompletedEventHandler HelloMongoCompleted;
-        
-        /// <remarks/>
-        public event GetCarritoCompletedEventHandler GetCarritoCompleted;
-        
-        /// <remarks/>
-        public event GetCarritosCompletedEventHandler GetCarritosCompleted;
-        
-        /// <remarks/>
-        public event InsertCarritoCompletedEventHandler InsertCarritoCompleted;
-        
-        /// <remarks/>
-        public event UpdateCarritoCompletedEventHandler UpdateCarritoCompleted;
-        
-        /// <remarks/>
-        public event DeleteCarritoCompletedEventHandler DeleteCarritoCompleted;
-        
-        /// <remarks/>
-        public event GetCarritoRowCompletedEventHandler GetCarritoRowCompleted;
-        
-        /// <remarks/>
-        public event GetCarritoRowsCompletedEventHandler GetCarritoRowsCompleted;
-        
-        /// <remarks/>
-        public event InsertCarritoRowCompletedEventHandler InsertCarritoRowCompleted;
-        
-        /// <remarks/>
-        public event UpdateCarritoRowCompletedEventHandler UpdateCarritoRowCompleted;
-        
-        /// <remarks/>
-        public event DeleteCarritoRowCompletedEventHandler DeleteCarritoRowCompleted;
         
         /// <remarks/>
         public event GetFacturaCompletedEventHandler GetFacturaCompleted;
@@ -329,13 +287,25 @@ namespace DBII.Service {
         public event LoginCompletedEventHandler LoginCompleted;
         
         /// <remarks/>
+        public event LogOutCompletedEventHandler LogOutCompleted;
+        
+        /// <remarks/>
+        public event GetUserCompletedEventHandler GetUserCompleted;
+        
+        /// <remarks/>
         public event AddItemCompletedEventHandler AddItemCompleted;
         
         /// <remarks/>
-        public event GetCarritoFromCompletedEventHandler GetCarritoFromCompleted;
+        public event DeleteCarritoRowCompletedEventHandler DeleteCarritoRowCompleted;
+        
+        /// <remarks/>
+        public event UpdateCarritoRowCompletedEventHandler UpdateCarritoRowCompleted;
         
         /// <remarks/>
         public event GetCarritoItemsCompletedEventHandler GetCarritoItemsCompleted;
+        
+        /// <remarks/>
+        public event RollBackCarritoCompletedEventHandler RollBackCarritoCompleted;
         
         /// <remarks/>
         public event NuevoPedidoCompletedEventHandler NuevoPedidoCompleted;
@@ -408,300 +378,6 @@ namespace DBII.Service {
             if ((this.HelloMongoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloMongoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarrito", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoDTO GetCarrito(int id) {
-            object[] results = this.Invoke("GetCarrito", new object[] {
-                        id});
-            return ((CarritoDTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetCarritoAsync(int id) {
-            this.GetCarritoAsync(id, null);
-        }
-        
-        /// <remarks/>
-        public void GetCarritoAsync(int id, object userState) {
-            if ((this.GetCarritoOperationCompleted == null)) {
-                this.GetCarritoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritoOperationCompleted);
-            }
-            this.InvokeAsync("GetCarrito", new object[] {
-                        id}, this.GetCarritoOperationCompleted, userState);
-        }
-        
-        private void OnGetCarritoOperationCompleted(object arg) {
-            if ((this.GetCarritoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCarritoCompleted(this, new GetCarritoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarritos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoDTO[] GetCarritos() {
-            object[] results = this.Invoke("GetCarritos", new object[0]);
-            return ((CarritoDTO[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetCarritosAsync() {
-            this.GetCarritosAsync(null);
-        }
-        
-        /// <remarks/>
-        public void GetCarritosAsync(object userState) {
-            if ((this.GetCarritosOperationCompleted == null)) {
-                this.GetCarritosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritosOperationCompleted);
-            }
-            this.InvokeAsync("GetCarritos", new object[0], this.GetCarritosOperationCompleted, userState);
-        }
-        
-        private void OnGetCarritosOperationCompleted(object arg) {
-            if ((this.GetCarritosCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCarritosCompleted(this, new GetCarritosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertCarrito", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void InsertCarrito(int idUsuario) {
-            this.Invoke("InsertCarrito", new object[] {
-                        idUsuario});
-        }
-        
-        /// <remarks/>
-        public void InsertCarritoAsync(int idUsuario) {
-            this.InsertCarritoAsync(idUsuario, null);
-        }
-        
-        /// <remarks/>
-        public void InsertCarritoAsync(int idUsuario, object userState) {
-            if ((this.InsertCarritoOperationCompleted == null)) {
-                this.InsertCarritoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertCarritoOperationCompleted);
-            }
-            this.InvokeAsync("InsertCarrito", new object[] {
-                        idUsuario}, this.InsertCarritoOperationCompleted, userState);
-        }
-        
-        private void OnInsertCarritoOperationCompleted(object arg) {
-            if ((this.InsertCarritoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.InsertCarritoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCarrito", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateCarrito(int idUsuario, int id) {
-            this.Invoke("UpdateCarrito", new object[] {
-                        idUsuario,
-                        id});
-        }
-        
-        /// <remarks/>
-        public void UpdateCarritoAsync(int idUsuario, int id) {
-            this.UpdateCarritoAsync(idUsuario, id, null);
-        }
-        
-        /// <remarks/>
-        public void UpdateCarritoAsync(int idUsuario, int id, object userState) {
-            if ((this.UpdateCarritoOperationCompleted == null)) {
-                this.UpdateCarritoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCarritoOperationCompleted);
-            }
-            this.InvokeAsync("UpdateCarrito", new object[] {
-                        idUsuario,
-                        id}, this.UpdateCarritoOperationCompleted, userState);
-        }
-        
-        private void OnUpdateCarritoOperationCompleted(object arg) {
-            if ((this.UpdateCarritoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateCarritoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCarrito", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DeleteCarrito(int id) {
-            this.Invoke("DeleteCarrito", new object[] {
-                        id});
-        }
-        
-        /// <remarks/>
-        public void DeleteCarritoAsync(int id) {
-            this.DeleteCarritoAsync(id, null);
-        }
-        
-        /// <remarks/>
-        public void DeleteCarritoAsync(int id, object userState) {
-            if ((this.DeleteCarritoOperationCompleted == null)) {
-                this.DeleteCarritoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCarritoOperationCompleted);
-            }
-            this.InvokeAsync("DeleteCarrito", new object[] {
-                        id}, this.DeleteCarritoOperationCompleted, userState);
-        }
-        
-        private void OnDeleteCarritoOperationCompleted(object arg) {
-            if ((this.DeleteCarritoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.DeleteCarritoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoRowDTO GetCarritoRow(int id) {
-            object[] results = this.Invoke("GetCarritoRow", new object[] {
-                        id});
-            return ((CarritoRowDTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetCarritoRowAsync(int id) {
-            this.GetCarritoRowAsync(id, null);
-        }
-        
-        /// <remarks/>
-        public void GetCarritoRowAsync(int id, object userState) {
-            if ((this.GetCarritoRowOperationCompleted == null)) {
-                this.GetCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritoRowOperationCompleted);
-            }
-            this.InvokeAsync("GetCarritoRow", new object[] {
-                        id}, this.GetCarritoRowOperationCompleted, userState);
-        }
-        
-        private void OnGetCarritoRowOperationCompleted(object arg) {
-            if ((this.GetCarritoRowCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCarritoRowCompleted(this, new GetCarritoRowCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarritoRows", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoRowDTO[] GetCarritoRows(int carritoId) {
-            object[] results = this.Invoke("GetCarritoRows", new object[] {
-                        carritoId});
-            return ((CarritoRowDTO[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetCarritoRowsAsync(int carritoId) {
-            this.GetCarritoRowsAsync(carritoId, null);
-        }
-        
-        /// <remarks/>
-        public void GetCarritoRowsAsync(int carritoId, object userState) {
-            if ((this.GetCarritoRowsOperationCompleted == null)) {
-                this.GetCarritoRowsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritoRowsOperationCompleted);
-            }
-            this.InvokeAsync("GetCarritoRows", new object[] {
-                        carritoId}, this.GetCarritoRowsOperationCompleted, userState);
-        }
-        
-        private void OnGetCarritoRowsOperationCompleted(object arg) {
-            if ((this.GetCarritoRowsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCarritoRowsCompleted(this, new GetCarritoRowsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void InsertCarritoRow(int idCarrito, int idItem, int cantidad) {
-            this.Invoke("InsertCarritoRow", new object[] {
-                        idCarrito,
-                        idItem,
-                        cantidad});
-        }
-        
-        /// <remarks/>
-        public void InsertCarritoRowAsync(int idCarrito, int idItem, int cantidad) {
-            this.InsertCarritoRowAsync(idCarrito, idItem, cantidad, null);
-        }
-        
-        /// <remarks/>
-        public void InsertCarritoRowAsync(int idCarrito, int idItem, int cantidad, object userState) {
-            if ((this.InsertCarritoRowOperationCompleted == null)) {
-                this.InsertCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertCarritoRowOperationCompleted);
-            }
-            this.InvokeAsync("InsertCarritoRow", new object[] {
-                        idCarrito,
-                        idItem,
-                        cantidad}, this.InsertCarritoRowOperationCompleted, userState);
-        }
-        
-        private void OnInsertCarritoRowOperationCompleted(object arg) {
-            if ((this.InsertCarritoRowCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.InsertCarritoRowCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateCarritoRow(int idCarrito, int idItem, int cantidad, int id) {
-            this.Invoke("UpdateCarritoRow", new object[] {
-                        idCarrito,
-                        idItem,
-                        cantidad,
-                        id});
-        }
-        
-        /// <remarks/>
-        public void UpdateCarritoRowAsync(int idCarrito, int idItem, int cantidad, int id) {
-            this.UpdateCarritoRowAsync(idCarrito, idItem, cantidad, id, null);
-        }
-        
-        /// <remarks/>
-        public void UpdateCarritoRowAsync(int idCarrito, int idItem, int cantidad, int id, object userState) {
-            if ((this.UpdateCarritoRowOperationCompleted == null)) {
-                this.UpdateCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCarritoRowOperationCompleted);
-            }
-            this.InvokeAsync("UpdateCarritoRow", new object[] {
-                        idCarrito,
-                        idItem,
-                        cantidad,
-                        id}, this.UpdateCarritoRowOperationCompleted, userState);
-        }
-        
-        private void OnUpdateCarritoRowOperationCompleted(object arg) {
-            if ((this.UpdateCarritoRowCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateCarritoRowCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DeleteCarritoRow(int id) {
-            this.Invoke("DeleteCarritoRow", new object[] {
-                        id});
-        }
-        
-        /// <remarks/>
-        public void DeleteCarritoRowAsync(int id) {
-            this.DeleteCarritoRowAsync(id, null);
-        }
-        
-        /// <remarks/>
-        public void DeleteCarritoRowAsync(int id, object userState) {
-            if ((this.DeleteCarritoRowOperationCompleted == null)) {
-                this.DeleteCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCarritoRowOperationCompleted);
-            }
-            this.InvokeAsync("DeleteCarritoRow", new object[] {
-                        id}, this.DeleteCarritoRowOperationCompleted, userState);
-        }
-        
-        private void OnDeleteCarritoRowOperationCompleted(object arg) {
-            if ((this.DeleteCarritoRowCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.DeleteCarritoRowCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1675,27 +1351,29 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void InsertUsuario(string nombre, string direccion, string documento) {
+        public void InsertUsuario(string nombre, string direccion, string documento, string categoria) {
             this.Invoke("InsertUsuario", new object[] {
                         nombre,
                         direccion,
-                        documento});
+                        documento,
+                        categoria});
         }
         
         /// <remarks/>
-        public void InsertUsuarioAsync(string nombre, string direccion, string documento) {
-            this.InsertUsuarioAsync(nombre, direccion, documento, null);
+        public void InsertUsuarioAsync(string nombre, string direccion, string documento, string categoria) {
+            this.InsertUsuarioAsync(nombre, direccion, documento, categoria, null);
         }
         
         /// <remarks/>
-        public void InsertUsuarioAsync(string nombre, string direccion, string documento, object userState) {
+        public void InsertUsuarioAsync(string nombre, string direccion, string documento, string categoria, object userState) {
             if ((this.InsertUsuarioOperationCompleted == null)) {
                 this.InsertUsuarioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertUsuarioOperationCompleted);
             }
             this.InvokeAsync("InsertUsuario", new object[] {
                         nombre,
                         direccion,
-                        documento}, this.InsertUsuarioOperationCompleted, userState);
+                        documento,
+                        categoria}, this.InsertUsuarioOperationCompleted, userState);
         }
         
         private void OnInsertUsuarioOperationCompleted(object arg) {
@@ -1707,21 +1385,22 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateUsuario(string nombre, string direccion, string documento, int id) {
+        public void UpdateUsuario(string nombre, string direccion, string documento, string categoria, int id) {
             this.Invoke("UpdateUsuario", new object[] {
                         nombre,
                         direccion,
                         documento,
+                        categoria,
                         id});
         }
         
         /// <remarks/>
-        public void UpdateUsuarioAsync(string nombre, string direccion, string documento, int id) {
-            this.UpdateUsuarioAsync(nombre, direccion, documento, id, null);
+        public void UpdateUsuarioAsync(string nombre, string direccion, string documento, string categoria, int id) {
+            this.UpdateUsuarioAsync(nombre, direccion, documento, categoria, id, null);
         }
         
         /// <remarks/>
-        public void UpdateUsuarioAsync(string nombre, string direccion, string documento, int id, object userState) {
+        public void UpdateUsuarioAsync(string nombre, string direccion, string documento, string categoria, int id, object userState) {
             if ((this.UpdateUsuarioOperationCompleted == null)) {
                 this.UpdateUsuarioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateUsuarioOperationCompleted);
             }
@@ -1729,6 +1408,7 @@ namespace DBII.Service {
                         nombre,
                         direccion,
                         documento,
+                        categoria,
                         id}, this.UpdateUsuarioOperationCompleted, userState);
         }
         
@@ -1769,10 +1449,10 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Login", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public UsuarioDTO Login(string nombre) {
+        public UserSession Login(string nombre) {
             object[] results = this.Invoke("Login", new object[] {
                         nombre});
-            return ((UsuarioDTO)(results[0]));
+            return ((UserSession)(results[0]));
         }
         
         /// <remarks/>
@@ -1797,20 +1477,75 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LogOut", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void LogOut(UserSession sesion) {
+            this.Invoke("LogOut", new object[] {
+                        sesion});
+        }
+        
+        /// <remarks/>
+        public void LogOutAsync(UserSession sesion) {
+            this.LogOutAsync(sesion, null);
+        }
+        
+        /// <remarks/>
+        public void LogOutAsync(UserSession sesion, object userState) {
+            if ((this.LogOutOperationCompleted == null)) {
+                this.LogOutOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLogOutOperationCompleted);
+            }
+            this.InvokeAsync("LogOut", new object[] {
+                        sesion}, this.LogOutOperationCompleted, userState);
+        }
+        
+        private void OnLogOutOperationCompleted(object arg) {
+            if ((this.LogOutCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LogOutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserSession GetUser() {
+            object[] results = this.Invoke("GetUser", new object[0]);
+            return ((UserSession)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetUserAsync() {
+            this.GetUserAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetUserAsync(object userState) {
+            if ((this.GetUserOperationCompleted == null)) {
+                this.GetUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUserOperationCompleted);
+            }
+            this.InvokeAsync("GetUser", new object[0], this.GetUserOperationCompleted, userState);
+        }
+        
+        private void OnGetUserOperationCompleted(object arg) {
+            if ((this.GetUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetUserCompleted(this, new GetUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void AddItem(UsuarioDTO user, ItemDTO item) {
+        public void AddItem(UserSession user, ItemDTO item) {
             this.Invoke("AddItem", new object[] {
                         user,
                         item});
         }
         
         /// <remarks/>
-        public void AddItemAsync(UsuarioDTO user, ItemDTO item) {
+        public void AddItemAsync(UserSession user, ItemDTO item) {
             this.AddItemAsync(user, item, null);
         }
         
         /// <remarks/>
-        public void AddItemAsync(UsuarioDTO user, ItemDTO item, object userState) {
+        public void AddItemAsync(UserSession user, ItemDTO item, object userState) {
             if ((this.AddItemOperationCompleted == null)) {
                 this.AddItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddItemOperationCompleted);
             }
@@ -1827,54 +1562,87 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarritoFrom", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoDTO GetCarritoFrom(UsuarioDTO usuario) {
-            object[] results = this.Invoke("GetCarritoFrom", new object[] {
-                        usuario});
-            return ((CarritoDTO)(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteCarritoRow(UserSession user, int idItem) {
+            this.Invoke("DeleteCarritoRow", new object[] {
+                        user,
+                        idItem});
         }
         
         /// <remarks/>
-        public void GetCarritoFromAsync(UsuarioDTO usuario) {
-            this.GetCarritoFromAsync(usuario, null);
+        public void DeleteCarritoRowAsync(UserSession user, int idItem) {
+            this.DeleteCarritoRowAsync(user, idItem, null);
         }
         
         /// <remarks/>
-        public void GetCarritoFromAsync(UsuarioDTO usuario, object userState) {
-            if ((this.GetCarritoFromOperationCompleted == null)) {
-                this.GetCarritoFromOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritoFromOperationCompleted);
+        public void DeleteCarritoRowAsync(UserSession user, int idItem, object userState) {
+            if ((this.DeleteCarritoRowOperationCompleted == null)) {
+                this.DeleteCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteCarritoRowOperationCompleted);
             }
-            this.InvokeAsync("GetCarritoFrom", new object[] {
-                        usuario}, this.GetCarritoFromOperationCompleted, userState);
+            this.InvokeAsync("DeleteCarritoRow", new object[] {
+                        user,
+                        idItem}, this.DeleteCarritoRowOperationCompleted, userState);
         }
         
-        private void OnGetCarritoFromOperationCompleted(object arg) {
-            if ((this.GetCarritoFromCompleted != null)) {
+        private void OnDeleteCarritoRowOperationCompleted(object arg) {
+            if ((this.DeleteCarritoRowCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCarritoFromCompleted(this, new GetCarritoFromCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.DeleteCarritoRowCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateCarritoRow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateCarritoRow(UserSession user, int IdItem, int cantidad) {
+            this.Invoke("UpdateCarritoRow", new object[] {
+                        user,
+                        IdItem,
+                        cantidad});
+        }
+        
+        /// <remarks/>
+        public void UpdateCarritoRowAsync(UserSession user, int IdItem, int cantidad) {
+            this.UpdateCarritoRowAsync(user, IdItem, cantidad, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateCarritoRowAsync(UserSession user, int IdItem, int cantidad, object userState) {
+            if ((this.UpdateCarritoRowOperationCompleted == null)) {
+                this.UpdateCarritoRowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCarritoRowOperationCompleted);
+            }
+            this.InvokeAsync("UpdateCarritoRow", new object[] {
+                        user,
+                        IdItem,
+                        cantidad}, this.UpdateCarritoRowOperationCompleted, userState);
+        }
+        
+        private void OnUpdateCarritoRowOperationCompleted(object arg) {
+            if ((this.UpdateCarritoRowCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateCarritoRowCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCarritoItems", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarritoItem[] GetCarritoItems(int idCarrito) {
+        public CarritoItemSession[] GetCarritoItems(UserSession user) {
             object[] results = this.Invoke("GetCarritoItems", new object[] {
-                        idCarrito});
-            return ((CarritoItem[])(results[0]));
+                        user});
+            return ((CarritoItemSession[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetCarritoItemsAsync(int idCarrito) {
-            this.GetCarritoItemsAsync(idCarrito, null);
+        public void GetCarritoItemsAsync(UserSession user) {
+            this.GetCarritoItemsAsync(user, null);
         }
         
         /// <remarks/>
-        public void GetCarritoItemsAsync(int idCarrito, object userState) {
+        public void GetCarritoItemsAsync(UserSession user, object userState) {
             if ((this.GetCarritoItemsOperationCompleted == null)) {
                 this.GetCarritoItemsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCarritoItemsOperationCompleted);
             }
             this.InvokeAsync("GetCarritoItems", new object[] {
-                        idCarrito}, this.GetCarritoItemsOperationCompleted, userState);
+                        user}, this.GetCarritoItemsOperationCompleted, userState);
         }
         
         private void OnGetCarritoItemsOperationCompleted(object arg) {
@@ -1885,26 +1653,53 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RollBackCarrito", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CarritoItemSession[] RollBackCarrito(UserSession user) {
+            object[] results = this.Invoke("RollBackCarrito", new object[] {
+                        user});
+            return ((CarritoItemSession[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RollBackCarritoAsync(UserSession user) {
+            this.RollBackCarritoAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void RollBackCarritoAsync(UserSession user, object userState) {
+            if ((this.RollBackCarritoOperationCompleted == null)) {
+                this.RollBackCarritoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRollBackCarritoOperationCompleted);
+            }
+            this.InvokeAsync("RollBackCarrito", new object[] {
+                        user}, this.RollBackCarritoOperationCompleted, userState);
+        }
+        
+        private void OnRollBackCarritoOperationCompleted(object arg) {
+            if ((this.RollBackCarritoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RollBackCarritoCompleted(this, new RollBackCarritoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/NuevoPedido", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void NuevoPedido(CarritoDTO carrito, UsuarioDTO usuario, string condicionIVA) {
+        public void NuevoPedido(UserSession usuario, string condicionIVA) {
             this.Invoke("NuevoPedido", new object[] {
-                        carrito,
                         usuario,
                         condicionIVA});
         }
         
         /// <remarks/>
-        public void NuevoPedidoAsync(CarritoDTO carrito, UsuarioDTO usuario, string condicionIVA) {
-            this.NuevoPedidoAsync(carrito, usuario, condicionIVA, null);
+        public void NuevoPedidoAsync(UserSession usuario, string condicionIVA) {
+            this.NuevoPedidoAsync(usuario, condicionIVA, null);
         }
         
         /// <remarks/>
-        public void NuevoPedidoAsync(CarritoDTO carrito, UsuarioDTO usuario, string condicionIVA, object userState) {
+        public void NuevoPedidoAsync(UserSession usuario, string condicionIVA, object userState) {
             if ((this.NuevoPedidoOperationCompleted == null)) {
                 this.NuevoPedidoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNuevoPedidoOperationCompleted);
             }
             this.InvokeAsync("NuevoPedido", new object[] {
-                        carrito,
                         usuario,
                         condicionIVA}, this.NuevoPedidoOperationCompleted, userState);
         }
@@ -1918,19 +1713,19 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetPedidosSinFacturar", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public PedidoDTO[] GetPedidosSinFacturar(UsuarioDTO usuario) {
+        public PedidoDTO[] GetPedidosSinFacturar(UserSession usuario) {
             object[] results = this.Invoke("GetPedidosSinFacturar", new object[] {
                         usuario});
             return ((PedidoDTO[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetPedidosSinFacturarAsync(UsuarioDTO usuario) {
+        public void GetPedidosSinFacturarAsync(UserSession usuario) {
             this.GetPedidosSinFacturarAsync(usuario, null);
         }
         
         /// <remarks/>
-        public void GetPedidosSinFacturarAsync(UsuarioDTO usuario, object userState) {
+        public void GetPedidosSinFacturarAsync(UserSession usuario, object userState) {
             if ((this.GetPedidosSinFacturarOperationCompleted == null)) {
                 this.GetPedidosSinFacturarOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPedidosSinFacturarOperationCompleted);
             }
@@ -1947,7 +1742,7 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/NuevaFactura", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void NuevaFactura(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago) {
+        public void NuevaFactura(PedidoDTO pedido, UserSession usuario, string condicionPago) {
             this.Invoke("NuevaFactura", new object[] {
                         pedido,
                         usuario,
@@ -1955,12 +1750,12 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
-        public void NuevaFacturaAsync(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago) {
+        public void NuevaFacturaAsync(PedidoDTO pedido, UserSession usuario, string condicionPago) {
             this.NuevaFacturaAsync(pedido, usuario, condicionPago, null);
         }
         
         /// <remarks/>
-        public void NuevaFacturaAsync(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago, object userState) {
+        public void NuevaFacturaAsync(PedidoDTO pedido, UserSession usuario, string condicionPago, object userState) {
             if ((this.NuevaFacturaOperationCompleted == null)) {
                 this.NuevaFacturaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNuevaFacturaOperationCompleted);
             }
@@ -1979,19 +1774,19 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFacturasSinPagar", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public FacturaDTO[] GetFacturasSinPagar(UsuarioDTO usuario) {
+        public FacturaDTO[] GetFacturasSinPagar(UserSession usuario) {
             object[] results = this.Invoke("GetFacturasSinPagar", new object[] {
                         usuario});
             return ((FacturaDTO[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetFacturasSinPagarAsync(UsuarioDTO usuario) {
+        public void GetFacturasSinPagarAsync(UserSession usuario) {
             this.GetFacturasSinPagarAsync(usuario, null);
         }
         
         /// <remarks/>
-        public void GetFacturasSinPagarAsync(UsuarioDTO usuario, object userState) {
+        public void GetFacturasSinPagarAsync(UserSession usuario, object userState) {
             if ((this.GetFacturasSinPagarOperationCompleted == null)) {
                 this.GetFacturasSinPagarOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFacturasSinPagarOperationCompleted);
             }
@@ -2008,7 +1803,7 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/NuevoPago", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void NuevoPago(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total) {
+        public void NuevoPago(FacturaDTO[] facturas, UserSession usuario, decimal total) {
             this.Invoke("NuevoPago", new object[] {
                         facturas,
                         usuario,
@@ -2016,12 +1811,12 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
-        public void NuevoPagoAsync(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total) {
+        public void NuevoPagoAsync(FacturaDTO[] facturas, UserSession usuario, decimal total) {
             this.NuevoPagoAsync(facturas, usuario, total, null);
         }
         
         /// <remarks/>
-        public void NuevoPagoAsync(FacturaDTO[] facturas, UsuarioDTO usuario, decimal total, object userState) {
+        public void NuevoPagoAsync(FacturaDTO[] facturas, UserSession usuario, decimal total, object userState) {
             if ((this.NuevoPagoOperationCompleted == null)) {
                 this.NuevoPagoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNuevoPagoOperationCompleted);
             }
@@ -2040,19 +1835,19 @@ namespace DBII.Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetPagosDeUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public PagoDTO[] GetPagosDeUsuario(UsuarioDTO usuario) {
+        public PagoDTO[] GetPagosDeUsuario(UserSession usuario) {
             object[] results = this.Invoke("GetPagosDeUsuario", new object[] {
                         usuario});
             return ((PagoDTO[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetPagosDeUsuarioAsync(UsuarioDTO usuario) {
+        public void GetPagosDeUsuarioAsync(UserSession usuario) {
             this.GetPagosDeUsuarioAsync(usuario, null);
         }
         
         /// <remarks/>
-        public void GetPagosDeUsuarioAsync(UsuarioDTO usuario, object userState) {
+        public void GetPagosDeUsuarioAsync(UserSession usuario, object userState) {
             if ((this.GetPagosDeUsuarioOperationCompleted == null)) {
                 this.GetPagosDeUsuarioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPagosDeUsuarioOperationCompleted);
             }
@@ -2121,9 +1916,45 @@ namespace DBII.Service {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class CarritoDTO : DTOBase {
+    public partial class FacturaDTO : DTOBase {
+        
+        private int idPedidoField;
+        
+        private string condicionPagoField;
+        
+        private decimal totalField;
         
         private int idUsuarioField;
+        
+        /// <remarks/>
+        public int idPedido {
+            get {
+                return this.idPedidoField;
+            }
+            set {
+                this.idPedidoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string condicionPago {
+            get {
+                return this.condicionPagoField;
+            }
+            set {
+                this.condicionPagoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal total {
+            get {
+                return this.totalField;
+            }
+            set {
+                this.totalField = value;
+            }
+        }
         
         /// <remarks/>
         public int idUsuario {
@@ -2144,9 +1975,6 @@ namespace DBII.Service {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PagoDTO))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemDTO))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(FacturaDTO))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CarritoRowDTO))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CarritoItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CarritoDTO))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2358,6 +2186,145 @@ namespace DBII.Service {
             }
             set {
                 this.marcaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CarritoItemSession {
+        
+        private int idItemField;
+        
+        private int cantidadField;
+        
+        private string descripcionField;
+        
+        private decimal importeField;
+        
+        /// <remarks/>
+        public int IdItem {
+            get {
+                return this.idItemField;
+            }
+            set {
+                this.idItemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                this.cantidadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Descripcion {
+            get {
+                return this.descripcionField;
+            }
+            set {
+                this.descripcionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Importe {
+            get {
+                return this.importeField;
+            }
+            set {
+                this.importeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserSession {
+        
+        private int userIdField;
+        
+        private string nombreField;
+        
+        private string direccionField;
+        
+        private string documentoField;
+        
+        private System.DateTime loginField;
+        
+        private System.Nullable<System.DateTime> logoutField;
+        
+        /// <remarks/>
+        public int UserId {
+            get {
+                return this.userIdField;
+            }
+            set {
+                this.userIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Direccion {
+            get {
+                return this.direccionField;
+            }
+            set {
+                this.direccionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Documento {
+            get {
+                return this.documentoField;
+            }
+            set {
+                this.documentoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Login {
+            get {
+                return this.loginField;
+            }
+            set {
+                this.loginField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> Logout {
+            get {
+                return this.logoutField;
+            }
+            set {
+                this.logoutField = value;
             }
         }
     }
@@ -2657,142 +2624,6 @@ namespace DBII.Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class FacturaDTO : DTOBase {
-        
-        private int idPedidoField;
-        
-        private string condicionPagoField;
-        
-        private decimal totalField;
-        
-        private int idUsuarioField;
-        
-        /// <remarks/>
-        public int idPedido {
-            get {
-                return this.idPedidoField;
-            }
-            set {
-                this.idPedidoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string condicionPago {
-            get {
-                return this.condicionPagoField;
-            }
-            set {
-                this.condicionPagoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal total {
-            get {
-                return this.totalField;
-            }
-            set {
-                this.totalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int idUsuario {
-            get {
-                return this.idUsuarioField;
-            }
-            set {
-                this.idUsuarioField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CarritoItem))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class CarritoRowDTO : DTOBase {
-        
-        private int idCarritoField;
-        
-        private int idItemField;
-        
-        private int cantidadField;
-        
-        /// <remarks/>
-        public int idCarrito {
-            get {
-                return this.idCarritoField;
-            }
-            set {
-                this.idCarritoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int idItem {
-            get {
-                return this.idItemField;
-            }
-            set {
-                this.idItemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int cantidad {
-            get {
-                return this.cantidadField;
-            }
-            set {
-                this.cantidadField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class CarritoItem : CarritoRowDTO {
-        
-        private string descripcionField;
-        
-        private decimal importeField;
-        
-        /// <remarks/>
-        public string descripcion {
-            get {
-                return this.descripcionField;
-            }
-            set {
-                this.descripcionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal importe {
-            get {
-                return this.importeField;
-            }
-            set {
-                this.importeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
@@ -2821,134 +2652,6 @@ namespace DBII.Service {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void HelloMongoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetCarritoCompletedEventHandler(object sender, GetCarritoCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCarritoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCarritoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CarritoDTO Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CarritoDTO)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetCarritosCompletedEventHandler(object sender, GetCarritosCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCarritosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCarritosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CarritoDTO[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CarritoDTO[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void InsertCarritoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void UpdateCarritoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void DeleteCarritoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetCarritoRowCompletedEventHandler(object sender, GetCarritoRowCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCarritoRowCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCarritoRowCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CarritoRowDTO Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CarritoRowDTO)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetCarritoRowsCompletedEventHandler(object sender, GetCarritoRowsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCarritoRowsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCarritoRowsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CarritoRowDTO[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CarritoRowDTO[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void InsertCarritoRowCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void UpdateCarritoRowCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void DeleteCarritoRowCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -3460,10 +3163,40 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
-        public UsuarioDTO Result {
+        public UserSession Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((UsuarioDTO)(this.results[0]));
+                return ((UserSession)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void LogOutCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetUserCompletedEventHandler(object sender, GetUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserSession Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserSession)(this.results[0]));
             }
         }
     }
@@ -3474,29 +3207,11 @@ namespace DBII.Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetCarritoFromCompletedEventHandler(object sender, GetCarritoFromCompletedEventArgs e);
+    public delegate void DeleteCarritoRowCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCarritoFromCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCarritoFromCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CarritoDTO Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CarritoDTO)(this.results[0]));
-            }
-        }
-    }
+    public delegate void UpdateCarritoRowCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -3516,10 +3231,36 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
-        public CarritoItem[] Result {
+        public CarritoItemSession[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((CarritoItem[])(this.results[0]));
+                return ((CarritoItemSession[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RollBackCarritoCompletedEventHandler(object sender, RollBackCarritoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RollBackCarritoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RollBackCarritoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CarritoItemSession[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CarritoItemSession[])(this.results[0]));
             }
         }
     }

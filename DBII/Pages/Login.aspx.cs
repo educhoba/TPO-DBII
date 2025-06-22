@@ -22,7 +22,6 @@ namespace DBII.Pages
                 var ret = ws.Login(TextBox1.Text);
                 if (ret != null)
                 {
-                    Session.Add(MasterPage.USER, ret);
                     Response.Redirect("~\\Pages\\Main\\Catalogo.aspx");
                 }
             }

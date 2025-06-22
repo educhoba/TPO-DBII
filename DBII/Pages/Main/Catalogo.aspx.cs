@@ -63,7 +63,7 @@ namespace DBII.Pages.Main
         {
             try
             {
-                UsuarioDTO user = GetUsuarioSession();
+                UserSession user = GetUsuarioSession();
                 ItemDTO item = (ItemDTO)Session[MasterPage.ITEM];
 
                 if (item != null)
@@ -81,12 +81,9 @@ namespace DBII.Pages.Main
             //agregar
         }
 
-        public UsuarioDTO GetUsuarioSession()
+        public UserSession GetUsuarioSession()
         {
-            //TODO recuperarla de redis?
-            UsuarioDTO user = (UsuarioDTO)Session[MasterPage.USER];
-            if (user == null)
-                Response.Redirect("~\\Pages\\Login.aspx");
+            var user = ws.GetUser();
             return user;
         }
 

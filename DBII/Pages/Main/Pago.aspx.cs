@@ -26,12 +26,9 @@ namespace DBII.Pages.Main
                 }
         }
 
-        public UsuarioDTO GetUsuarioSession()
+        public UserSession GetUsuarioSession()
         {
-            //TODO recuperarla de redis?
-            UsuarioDTO user = (UsuarioDTO)Session[MasterPage.USER];
-            if (user == null)
-                Response.Redirect("~\\Pages\\Login.aspx");
+            var user = ws.GetUser();
             return user;
         }
     }

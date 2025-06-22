@@ -20,5 +20,25 @@ namespace DBII.Pages
         {
 
         }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogOut();
+            }
+            catch(Exception ex)
+            {
+                lbMasterMsg.Text = ex.Message;
+            }
+        }
+        private void LogOut()
+        {
+            Service.Service ws = new Service.Service();
+            var user = ws.GetUser();
+            ws.LogOut(user);
+
+            Response.Redirect("~\\Pages\\Login.aspx");
+        }
     }
 }

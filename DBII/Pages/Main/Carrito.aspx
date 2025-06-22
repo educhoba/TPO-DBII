@@ -9,7 +9,7 @@
             <main class="row">
                 <div class="col-5">
                     <div class="list-group list-group-flush border-bottom scrollarea" style="height: 74vh; overflow: auto">
-                        <asp:GridView DataKeyNames="id" AutoGenerateColumns="false" ID="gvList" runat="server" Class="table table-stripped" OnRowCommand="gvList_RowCommand">
+                        <asp:GridView DataKeyNames="IdItem" AutoGenerateColumns="false" ID="gvList" runat="server" Class="table table-stripped" OnRowCommand="gvList_RowCommand">
                             <SelectedRowStyle Font-Bold="true" CssClass="table-secondary" />
                             <Columns>
                                 <asp:BoundField DataField="descripcion" HeaderText="descripción" />

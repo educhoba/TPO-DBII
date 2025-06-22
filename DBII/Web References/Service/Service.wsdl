@@ -18,159 +18,6 @@
       <s:element name="HelloMongoResponse">
         <s:complexType />
       </s:element>
-      <s:element name="GetCarrito">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCarritoResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoResult" type="tns:CarritoDTO" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="CarritoDTO">
-        <s:complexContent mixed="false">
-          <s:extension base="tns:DTOBase">
-            <s:sequence>
-              <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
-            </s:sequence>
-          </s:extension>
-        </s:complexContent>
-      </s:complexType>
-      <s:complexType name="DTOBase" abstract="true">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="GetCarritos">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetCarritosResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritosResult" type="tns:ArrayOfCarritoDTO" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfCarritoDTO">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoDTO" nillable="true" type="tns:CarritoDTO" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="InsertCarrito">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="InsertCarritoResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="UpdateCarrito">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateCarritoResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="DeleteCarrito">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DeleteCarritoResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetCarritoRow">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCarritoRowResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoRowResult" type="tns:CarritoRowDTO" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="CarritoRowDTO">
-        <s:complexContent mixed="false">
-          <s:extension base="tns:DTOBase">
-            <s:sequence>
-              <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
-              <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
-              <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
-            </s:sequence>
-          </s:extension>
-        </s:complexContent>
-      </s:complexType>
-      <s:element name="GetCarritoRows">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="carritoId" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetCarritoRowsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoRowsResult" type="tns:ArrayOfCarritoRowDTO" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfCarritoRowDTO">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoRowDTO" nillable="true" type="tns:CarritoRowDTO" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="InsertCarritoRow">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="InsertCarritoRowResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="UpdateCarritoRow">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateCarritoRowResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="DeleteCarritoRow">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DeleteCarritoRowResponse">
-        <s:complexType />
-      </s:element>
       <s:element name="GetFactura">
         <s:complexType>
           <s:sequence>
@@ -196,6 +43,11 @@
             </s:sequence>
           </s:extension>
         </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DTOBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+        </s:sequence>
       </s:complexType>
       <s:element name="GetFacturas">
         <s:complexType />
@@ -686,6 +538,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoria" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -698,6 +551,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoria" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -725,14 +579,44 @@
       <s:element name="LoginResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:UserSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserSession">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Login" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Logout" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sesion" type="tns:UserSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserResult" type="tns:UserSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="AddItem">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserSession" />
             <s:element minOccurs="0" maxOccurs="1" name="item" type="tns:ItemDTO" />
           </s:sequence>
         </s:complexType>
@@ -740,54 +624,74 @@
       <s:element name="AddItemResponse">
         <s:complexType />
       </s:element>
-      <s:element name="GetCarritoFrom">
+      <s:element name="DeleteCarritoRow">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserSession" />
+            <s:element minOccurs="1" maxOccurs="1" name="idItem" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetCarritoFromResponse">
+      <s:element name="DeleteCarritoRowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateCarritoRow">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoFromResult" type="tns:CarritoDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserSession" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdItem" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="UpdateCarritoRowResponse">
+        <s:complexType />
       </s:element>
       <s:element name="GetCarritoItems">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idCarrito" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="GetCarritoItemsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoItemsResult" type="tns:ArrayOfCarritoItem" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetCarritoItemsResult" type="tns:ArrayOfCarritoItemSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfCarritoItem">
+      <s:complexType name="ArrayOfCarritoItemSession">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoItem" nillable="true" type="tns:CarritoItem" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CarritoItemSession" nillable="true" type="tns:CarritoItemSession" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="CarritoItem">
-        <s:complexContent mixed="false">
-          <s:extension base="tns:CarritoRowDTO">
-            <s:sequence>
-              <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
-              <s:element minOccurs="1" maxOccurs="1" name="importe" type="s:decimal" />
-            </s:sequence>
-          </s:extension>
-        </s:complexContent>
+      <s:complexType name="CarritoItemSession">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdItem" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:decimal" />
+        </s:sequence>
       </s:complexType>
+      <s:element name="RollBackCarrito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RollBackCarritoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RollBackCarritoResult" type="tns:ArrayOfCarritoItemSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="NuevoPedido">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="carrito" type="tns:CarritoDTO" />
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
             <s:element minOccurs="0" maxOccurs="1" name="condicionIVA" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -798,7 +702,7 @@
       <s:element name="GetPedidosSinFacturar">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -813,7 +717,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="pedido" type="tns:PedidoDTO" />
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
             <s:element minOccurs="0" maxOccurs="1" name="condicionPago" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -824,7 +728,7 @@
       <s:element name="GetFacturasSinPagar">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -839,7 +743,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="facturas" type="tns:ArrayOfFacturaDTO" />
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
             <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
           </s:sequence>
         </s:complexType>
@@ -850,7 +754,7 @@
       <s:element name="GetPagosDeUsuario">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UsuarioDTO" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:UserSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -929,66 +833,6 @@
   </wsdl:message>
   <wsdl:message name="HelloMongoSoapOut">
     <wsdl:part name="parameters" element="tns:HelloMongoResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCarrito" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCarritoResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritosSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCarritos" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritosSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCarritosResponse" />
-  </wsdl:message>
-  <wsdl:message name="InsertCarritoSoapIn">
-    <wsdl:part name="parameters" element="tns:InsertCarrito" />
-  </wsdl:message>
-  <wsdl:message name="InsertCarritoSoapOut">
-    <wsdl:part name="parameters" element="tns:InsertCarritoResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateCarritoSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateCarrito" />
-  </wsdl:message>
-  <wsdl:message name="UpdateCarritoSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateCarritoResponse" />
-  </wsdl:message>
-  <wsdl:message name="DeleteCarritoSoapIn">
-    <wsdl:part name="parameters" element="tns:DeleteCarrito" />
-  </wsdl:message>
-  <wsdl:message name="DeleteCarritoSoapOut">
-    <wsdl:part name="parameters" element="tns:DeleteCarritoResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoRowSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCarritoRow" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoRowSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCarritoRowResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoRowsSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCarritoRows" />
-  </wsdl:message>
-  <wsdl:message name="GetCarritoRowsSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCarritoRowsResponse" />
-  </wsdl:message>
-  <wsdl:message name="InsertCarritoRowSoapIn">
-    <wsdl:part name="parameters" element="tns:InsertCarritoRow" />
-  </wsdl:message>
-  <wsdl:message name="InsertCarritoRowSoapOut">
-    <wsdl:part name="parameters" element="tns:InsertCarritoRowResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateCarritoRowSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateCarritoRow" />
-  </wsdl:message>
-  <wsdl:message name="UpdateCarritoRowSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateCarritoRowResponse" />
-  </wsdl:message>
-  <wsdl:message name="DeleteCarritoRowSoapIn">
-    <wsdl:part name="parameters" element="tns:DeleteCarritoRow" />
-  </wsdl:message>
-  <wsdl:message name="DeleteCarritoRowSoapOut">
-    <wsdl:part name="parameters" element="tns:DeleteCarritoRowResponse" />
   </wsdl:message>
   <wsdl:message name="GetFacturaSoapIn">
     <wsdl:part name="parameters" element="tns:GetFactura" />
@@ -1206,23 +1050,47 @@
   <wsdl:message name="LoginSoapOut">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="LogOutSoapIn">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="LogOutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
   <wsdl:message name="AddItemSoapIn">
     <wsdl:part name="parameters" element="tns:AddItem" />
   </wsdl:message>
   <wsdl:message name="AddItemSoapOut">
     <wsdl:part name="parameters" element="tns:AddItemResponse" />
   </wsdl:message>
-  <wsdl:message name="GetCarritoFromSoapIn">
-    <wsdl:part name="parameters" element="tns:GetCarritoFrom" />
+  <wsdl:message name="DeleteCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCarritoRow" />
   </wsdl:message>
-  <wsdl:message name="GetCarritoFromSoapOut">
-    <wsdl:part name="parameters" element="tns:GetCarritoFromResponse" />
+  <wsdl:message name="DeleteCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCarritoRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoRowSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCarritoRow" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarritoRowSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCarritoRowResponse" />
   </wsdl:message>
   <wsdl:message name="GetCarritoItemsSoapIn">
     <wsdl:part name="parameters" element="tns:GetCarritoItems" />
   </wsdl:message>
   <wsdl:message name="GetCarritoItemsSoapOut">
     <wsdl:part name="parameters" element="tns:GetCarritoItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RollBackCarritoSoapIn">
+    <wsdl:part name="parameters" element="tns:RollBackCarrito" />
+  </wsdl:message>
+  <wsdl:message name="RollBackCarritoSoapOut">
+    <wsdl:part name="parameters" element="tns:RollBackCarritoResponse" />
   </wsdl:message>
   <wsdl:message name="NuevoPedidoSoapIn">
     <wsdl:part name="parameters" element="tns:NuevoPedido" />
@@ -1274,46 +1142,6 @@
     <wsdl:operation name="HelloMongo">
       <wsdl:input message="tns:HelloMongoSoapIn" />
       <wsdl:output message="tns:HelloMongoSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCarrito">
-      <wsdl:input message="tns:GetCarritoSoapIn" />
-      <wsdl:output message="tns:GetCarritoSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritos">
-      <wsdl:input message="tns:GetCarritosSoapIn" />
-      <wsdl:output message="tns:GetCarritosSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarrito">
-      <wsdl:input message="tns:InsertCarritoSoapIn" />
-      <wsdl:output message="tns:InsertCarritoSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarrito">
-      <wsdl:input message="tns:UpdateCarritoSoapIn" />
-      <wsdl:output message="tns:UpdateCarritoSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarrito">
-      <wsdl:input message="tns:DeleteCarritoSoapIn" />
-      <wsdl:output message="tns:DeleteCarritoSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRow">
-      <wsdl:input message="tns:GetCarritoRowSoapIn" />
-      <wsdl:output message="tns:GetCarritoRowSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRows">
-      <wsdl:input message="tns:GetCarritoRowsSoapIn" />
-      <wsdl:output message="tns:GetCarritoRowsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarritoRow">
-      <wsdl:input message="tns:InsertCarritoRowSoapIn" />
-      <wsdl:output message="tns:InsertCarritoRowSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarritoRow">
-      <wsdl:input message="tns:UpdateCarritoRowSoapIn" />
-      <wsdl:output message="tns:UpdateCarritoRowSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarritoRow">
-      <wsdl:input message="tns:DeleteCarritoRowSoapIn" />
-      <wsdl:output message="tns:DeleteCarritoRowSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetFactura">
       <wsdl:input message="tns:GetFacturaSoapIn" />
@@ -1459,17 +1287,33 @@
       <wsdl:input message="tns:LoginSoapIn" />
       <wsdl:output message="tns:LoginSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input message="tns:LogOutSoapIn" />
+      <wsdl:output message="tns:LogOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserSoapIn" />
+      <wsdl:output message="tns:GetUserSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AddItem">
       <wsdl:input message="tns:AddItemSoapIn" />
       <wsdl:output message="tns:AddItemSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetCarritoFrom">
-      <wsdl:input message="tns:GetCarritoFromSoapIn" />
-      <wsdl:output message="tns:GetCarritoFromSoapOut" />
+    <wsdl:operation name="DeleteCarritoRow">
+      <wsdl:input message="tns:DeleteCarritoRowSoapIn" />
+      <wsdl:output message="tns:DeleteCarritoRowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <wsdl:input message="tns:UpdateCarritoRowSoapIn" />
+      <wsdl:output message="tns:UpdateCarritoRowSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCarritoItems">
       <wsdl:input message="tns:GetCarritoItemsSoapIn" />
       <wsdl:output message="tns:GetCarritoItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RollBackCarrito">
+      <wsdl:input message="tns:RollBackCarritoSoapIn" />
+      <wsdl:output message="tns:RollBackCarritoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="NuevoPedido">
       <wsdl:input message="tns:NuevoPedidoSoapIn" />
@@ -1513,96 +1357,6 @@
     </wsdl:operation>
     <wsdl:operation name="HelloMongo">
       <soap:operation soapAction="http://tempuri.org/HelloMongo" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarrito">
-      <soap:operation soapAction="http://tempuri.org/GetCarrito" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritos">
-      <soap:operation soapAction="http://tempuri.org/GetCarritos" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarrito">
-      <soap:operation soapAction="http://tempuri.org/InsertCarrito" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarrito">
-      <soap:operation soapAction="http://tempuri.org/UpdateCarrito" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarrito">
-      <soap:operation soapAction="http://tempuri.org/DeleteCarrito" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRow">
-      <soap:operation soapAction="http://tempuri.org/GetCarritoRow" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRows">
-      <soap:operation soapAction="http://tempuri.org/GetCarritoRows" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarritoRow">
-      <soap:operation soapAction="http://tempuri.org/InsertCarritoRow" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarritoRow">
-      <soap:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarritoRow">
-      <soap:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1934,6 +1688,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/LogOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddItem">
       <soap:operation soapAction="http://tempuri.org/AddItem" style="document" />
       <wsdl:input>
@@ -1943,8 +1715,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCarritoFrom">
-      <soap:operation soapAction="http://tempuri.org/GetCarritoFrom" style="document" />
+    <wsdl:operation name="DeleteCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <soap:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1954,6 +1735,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCarritoItems">
       <soap:operation soapAction="http://tempuri.org/GetCarritoItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RollBackCarrito">
+      <soap:operation soapAction="http://tempuri.org/RollBackCarrito" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2038,96 +1828,6 @@
     </wsdl:operation>
     <wsdl:operation name="HelloMongo">
       <soap12:operation soapAction="http://tempuri.org/HelloMongo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarrito">
-      <soap12:operation soapAction="http://tempuri.org/GetCarrito" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritos">
-      <soap12:operation soapAction="http://tempuri.org/GetCarritos" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarrito">
-      <soap12:operation soapAction="http://tempuri.org/InsertCarrito" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarrito">
-      <soap12:operation soapAction="http://tempuri.org/UpdateCarrito" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarrito">
-      <soap12:operation soapAction="http://tempuri.org/DeleteCarrito" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRow">
-      <soap12:operation soapAction="http://tempuri.org/GetCarritoRow" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCarritoRows">
-      <soap12:operation soapAction="http://tempuri.org/GetCarritoRows" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertCarritoRow">
-      <soap12:operation soapAction="http://tempuri.org/InsertCarritoRow" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateCarritoRow">
-      <soap12:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteCarritoRow">
-      <soap12:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2459,6 +2159,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap12:operation soapAction="http://tempuri.org/LogOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap12:operation soapAction="http://tempuri.org/GetUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddItem">
       <soap12:operation soapAction="http://tempuri.org/AddItem" style="document" />
       <wsdl:input>
@@ -2468,8 +2186,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCarritoFrom">
-      <soap12:operation soapAction="http://tempuri.org/GetCarritoFrom" style="document" />
+    <wsdl:operation name="DeleteCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCarritoRow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarritoRow">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCarritoRow" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2479,6 +2206,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCarritoItems">
       <soap12:operation soapAction="http://tempuri.org/GetCarritoItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RollBackCarrito">
+      <soap12:operation soapAction="http://tempuri.org/RollBackCarrito" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

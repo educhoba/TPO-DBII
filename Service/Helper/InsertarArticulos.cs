@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using static Service.Model.ItemEnriquecido;
 
-namespace Service.ChatGPT
+namespace Service.Helper
 {
     public class InsertarArticulos
     {
@@ -106,7 +106,6 @@ namespace Service.ChatGPT
             };
 
             collection.InsertMany(articulos);
-            Console.WriteLine("Artículos insertados en MongoDB.");
         }
     }
 }

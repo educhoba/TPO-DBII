@@ -42,7 +42,7 @@
                         </li>
                     </ul>
                     <div role="button">
-                        <asp:Button CssClass="btn btn-outline-secondary" type="button" runat="server" Text="Cerrar sesión"/>
+                        <asp:Button CssClass="btn btn-outline-secondary" type="button" runat="server" Text="Cerrar sesión" OnClick="Unnamed_Click"/>
                     </div>
                 </div>
             </div>

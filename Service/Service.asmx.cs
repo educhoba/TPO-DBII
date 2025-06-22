@@ -1,5 +1,4 @@
-﻿using Service.ChatGPT;
-using Service.DAO;
+﻿using Service.DAO;
 using Service.DTO;
 using Service.Model;
 using System;
@@ -9,7 +8,13 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Services;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.IO;
+using MongoDB.Bson;
+using Service.Helper;
+using static System.Collections.Specialized.BitVector32;
 
+// Direct conversion
 namespace Service
 {
     /// <summary>
@@ -34,97 +39,6 @@ namespace Service
             InsertarArticulos.Insertar();
         }
 
-        #region CARRITO CRUDL
-
-        [WebMethod]
-        public CarritoDTO GetCarrito(int id)
-        {
-            return new DAOBase<CarritoDTO>().Read(id);
-        }
-        [WebMethod]
-        public List<CarritoDTO> GetCarritos()
-        {
-            return new DAOBase<CarritoDTO>().ReadAll();
-        }
-        [WebMethod]
-        public void InsertCarrito(int idUsuario)
-        {
-            if (idUsuario > 0)
-                new DAOBase<CarritoDTO>().Insert(new CarritoDTO
-                {
-                    idUsuario = idUsuario
-                });
-
-            //todo log en otra DB
-        }
-        [WebMethod]
-        public void UpdateCarrito(int idUsuario, int id)
-        {
-            if (idUsuario > 0)
-                new DAOBase<CarritoDTO>().Update(new CarritoDTO
-                {
-                    id = id,
-                    idUsuario = idUsuario
-                });
-
-            //todo log en otra DB
-        }
-        [WebMethod]
-        public void DeleteCarrito(int id)
-        {
-            if (id > 0)
-                new DAOBase<CarritoDTO>().Delete(id);
-            //todo log en otra DB
-        }
-        #endregion  
-        #region CARRITO ROW CRUDL
-
-        [WebMethod]
-        public CarritoRowDTO GetCarritoRow(int id)
-        {
-            return new DAOBase<CarritoRowDTO>().Read(id);
-        }
-        [WebMethod]
-        public List<CarritoRowDTO> GetCarritoRows(int carritoId)
-        {
-            var rows = new DAOBase<CarritoRowDTO>().ReadAll($"{nameof(CarritoRowDTO.idCarrito)} = {carritoId}");
-            return rows;
-        }
-        [WebMethod]
-        public void InsertCarritoRow(int idCarrito, int idItem, int cantidad)
-        {
-            if (idCarrito > 0 && idItem > 0)
-                new DAOBase<CarritoRowDTO>().Insert(new CarritoRowDTO
-                {
-                    idCarrito = idCarrito,
-                    idItem = idItem,
-                    cantidad = cantidad
-                });
-
-            //todo log en otra DB
-        }
-        [WebMethod]
-        public void UpdateCarritoRow(int idCarrito, int idItem, int cantidad, int id)
-        {
-            if (idCarrito > 0 && idItem > 0)
-                new DAOBase<CarritoRowDTO>().Update(new CarritoRowDTO
-                {
-                    id = id,
-                    idCarrito = idCarrito,
-                    idItem = idItem,
-                    cantidad = cantidad
-                });
-
-            //todo log en otra DB
-        }
-        [WebMethod]
-        public void DeleteCarritoRow(int id)
-        {
-            if (id > 0)
-                new DAOBase<CarritoRowDTO>().Delete(id);
-            //todo log en otra DB
-        }
-        #endregion  
         #region FACTURA CRUDL
 
         [WebMethod]
@@ -141,38 +55,45 @@ namespace Service
         public void InsertFactura(int idPedido, string condicionPago, decimal total, int idUsuario)
         {
             if (idPedido > 0 && condicionPago != null && total > 0)
-                new DAOBase<FacturaDTO>().Insert(new FacturaDTO
+            {
+                var dto = new FacturaDTO
                 {
                     condicionPago = condicionPago,
                     idPedido = idPedido,
                     total = total,
                     idUsuario = idUsuario
-                });
+                };
 
-            //todo log en otra DB
+                new DAOBase<FacturaDTO>().Insert(dto);
+
+            }
+
         }
         [WebMethod]
         public void UpdateFactura(int idPedido, string condicionPago, decimal total, int idUsuario, int id)
         {
             if (idPedido > 0 && condicionPago != null && total > 0)
-                new DAOBase<FacturaDTO>().Update(new FacturaDTO
+            {
+                var dto = new FacturaDTO
                 {
                     id = id,
                     condicionPago = condicionPago,
                     idPedido = idPedido,
                     total = total,
                     idUsuario = idUsuario
-                });
+                };
+                new DAOBase<FacturaDTO>().Update(dto);
+            }
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeleteFactura(int id)
         {
             if (id > 0)
+            {
                 new DAOBase<FacturaDTO>().Delete(id);
+            }
 
-            //todo log en otra DB
         }
         #endregion  
         #region ITEMS CRUDL
@@ -191,12 +112,17 @@ namespace Service
         public void InsertItem(string desc, int stock, decimal precio)
         {
             if (stock >= 0 && precio > 0)
-                new DAOBase<ItemDTO>().Insert(new ItemDTO
+            {
+                var dto = new ItemDTO
                 {
                     descripcion = desc,
                     stock = stock,
                     importe = precio
-                });
+                };
+                new DAOBase<ItemDTO>().Insert(dto);
+
+            }
+
 
             //todo log en otra DB
         }
@@ -212,14 +138,12 @@ namespace Service
                     importe = precio
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeleteItem(int id)
         {
             if (id > 0)
                 new DAOBase<ItemDTO>().Delete(id);
-            //todo log en otra DB
         }
         #endregion
         #region PAGO CRUDL
@@ -246,7 +170,6 @@ namespace Service
                 });
             }
             return -1;
-            //todo log en otra DB
         }
         [WebMethod]
         public void UpdatePago(decimal total, int idUsuario, int id)
@@ -259,7 +182,6 @@ namespace Service
                     idUsuario = idUsuario
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeletePago(int id)
@@ -293,7 +215,6 @@ namespace Service
                     monto = monto
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void UpdatePagoRow(int idPago, int idFactura, decimal monto, int id)
@@ -307,7 +228,6 @@ namespace Service
                     id = id
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeletePagoRow(int id)
@@ -315,7 +235,6 @@ namespace Service
             if (id > 0)
                 new DAOBase<PagoRowDTO>().Delete(id);
 
-            //todo log en otra DB
         }
         #endregion  
         #region PEDIDO CRUDL
@@ -340,7 +259,6 @@ namespace Service
                     condicionIVA = condicionIVA
                 });
             return -1;
-            //todo log en otra DB
         }
         [WebMethod]
         public void UpdatePedido(int idUsuario, string condicionIVA, int id)
@@ -353,7 +271,6 @@ namespace Service
                     id = id
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeletePedido(int id)
@@ -361,7 +278,6 @@ namespace Service
             if (id > 0)
                 new DAOBase<PedidoDTO>().Delete(id);
 
-            //todo log en otra DB
         }
         #endregion  
         #region PEDIDO ROW CRUDL
@@ -396,7 +312,6 @@ namespace Service
                     cantidad = cantidad
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void UpdatePedidoRow(int idPedido, decimal importe, decimal IVA, decimal descuento, string descripcion, int cantidad, int id)
@@ -417,7 +332,6 @@ namespace Service
                     cantidad = cantidad
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeletePedidoRow(int id)
@@ -425,7 +339,6 @@ namespace Service
             if (id > 0)
                 new DAOBase<PedidoRowDTO>().Delete(id);
 
-            //todo log en otra DB
         }
         #endregion 
         #region USUARIO CRUDL
@@ -441,7 +354,7 @@ namespace Service
             return new DAOBase<UsuarioDTO>().ReadAll();
         }
         [WebMethod]
-        public void InsertUsuario(string nombre, string direccion, string documento)
+        public void InsertUsuario(string nombre, string direccion, string documento, string categoria)
         {
             if (nombre != null &&
                 direccion != null &&
@@ -452,13 +365,12 @@ namespace Service
                     direccion = direccion,
                     documento = documento,
                     nombre = nombre,
-                    categoria = usuarioCat.LOW.ToString()
+                    categoria = categoria
                 });
 
-            //todo log en otra DB
         }
         [WebMethod]
-        public void UpdateUsuario(string nombre, string direccion, string documento, int id)
+        public void UpdateUsuario(string nombre, string direccion, string documento, string categoria, int id)
         {
             if (nombre != null &&
                 direccion != null &&
@@ -469,9 +381,9 @@ namespace Service
                     direccion = direccion,
                     documento = documento,
                     nombre = nombre,
+                    categoria = categoria,
                     id = id
                 });
-            //todo log en otra DB
         }
         [WebMethod]
         public void DeleteUsuario(int id)
@@ -479,103 +391,170 @@ namespace Service
             if (id > 0)
                 new DAOBase<UsuarioDTO>().Delete(id);
 
-            //todo log en otra DB
         }
         #endregion
 
         #region negocio
 
         [WebMethod]
-        public UsuarioDTO Login(string nombre)
+        public UserSession Login(string nombre)
         {
             var dao = new DAOBase<UsuarioDTO>();
 
-            return dao.ReadAll($"{nameof(UsuarioDTO.nombre)} = '{nombre}'").FirstOrDefault();
+            var ret = dao.ReadAll($"{nameof(UsuarioDTO.nombre)} = '{nombre}'").FirstOrDefault();
+
+            if (ret != null)
+            {
+                RedisService redis = new RedisService();
+
+                var session = new UserSession
+                {
+                    UserId = ret.id,
+                    Nombre = ret.nombre,
+                    Direccion = ret.direccion,
+                    Documento = ret.documento,
+                    Login = DateTime.Now
+                };
+
+                redis.SaveUserSession(session);
+
+                return session;
+            }
+            return null;
         }
         [WebMethod]
-        public void AddItem(UsuarioDTO user, ItemDTO item)
+        public void LogOut(UserSession sesion)
         {
-            //solo inserta si no existe el item
-            var carrito = GetCarritoFrom(user);
-            if (carrito != null)
+            var dao = new DAOBase<UsuarioDTO>();
+
+            var ret = dao.ReadAll($"{nameof(UsuarioDTO.nombre)} = '{sesion.Nombre}'").FirstOrDefault();
+
+            if (ret != null)
             {
-                var rows = GetCarritoRows(carrito.id);
-                if (rows != null)
+                RedisService redis = new RedisService();
+
+                redis.UpdateLogout();
+
+                ret.categoria = redis.CategorizeUser();
+                UpdateUsuario(ret.nombre, ret.direccion, ret.documento, ret.categoria, ret.id);
+            }
+        }
+        [WebMethod]
+        public UserSession GetUser()
+        {
+
+            RedisService redis = new RedisService();
+
+            return redis.GetUserSession();
+        }
+        [WebMethod]
+        public void AddItem(UserSession user, ItemDTO item)
+        {
+            var redis = new RedisService();
+            var historial = new CarritoHistorialService();
+            redis.AddOrUpdateItem(user.UserId, new CarritoItemSession
+            {
+                Cantidad = 1,
+                Descripcion = item.descripcion,
+                IdItem = item.id,
+                Importe = item.importe
+            });
+
+            var carrito = redis.GetCarritoItems(user.UserId);
+            historial.GuardarSnapshot(user.UserId, carrito);
+        }
+        [WebMethod]
+        public void DeleteCarritoRow(UserSession user, int idItem)
+        {
+            var redis = new RedisService();
+            var historial = new CarritoHistorialService();
+
+            redis.RemoveItem(user.UserId, idItem);
+
+            var carrito = redis.GetCarritoItems(user.UserId);
+            historial.GuardarSnapshot(user.UserId, carrito);
+        }
+        [WebMethod]
+        public void UpdateCarritoRow(UserSession user, int IdItem, int cantidad)
+        {
+            var redis = new RedisService();
+            var historial = new CarritoHistorialService();
+
+            redis.AddOrUpdateItem(user.UserId, new CarritoItemSession
+            {
+                IdItem = IdItem,
+                Cantidad = cantidad
+            });
+
+            var carrito = redis.GetCarritoItems(user.UserId);
+            historial.GuardarSnapshot(user.UserId, carrito);
+        }
+
+        [WebMethod]
+        public List<CarritoItemSession> GetCarritoItems(UserSession user)
+        {
+            var redis = new RedisService();
+
+            return redis.GetCarritoItems(user.UserId);
+        }
+        [WebMethod]
+        public List<CarritoItemSession> RollBackCarrito(UserSession user)
+        {
+            var redis = new RedisService();
+            var historial = new CarritoHistorialService();
+
+            var anterior = historial.DeshacerUltimoCambio(user.UserId);
+            redis.ClearCarrito(user.UserId);
+            if (anterior != null)
+            {
+                foreach (var row in anterior.Estado)
                 {
-                    var row = rows.Find(x => x.idItem == item.id);
-                    if (row == null)
+                    redis.AddOrUpdateItem(user.UserId, new CarritoItemSession
                     {
-                        InsertCarritoRow(carrito.id, item.id, 1);
-                    }
+                        Cantidad = row.Cantidad,
+                        IdItem = row.IdItem,
+                        Descripcion = row.Descripcion,
+                        Importe = row.Importe
+                    });
                 }
+                return redis.GetCarritoItems(user.UserId);
             }
             else
-                throw new Exception("ERROR EN CARRITO");
+                return new List<CarritoItemSession>();
         }
 
         [WebMethod]
-        public CarritoDTO GetCarritoFrom(UsuarioDTO usuario)
+        public void NuevoPedido(UserSession usuario, string condicionIVA)
         {
-            //TODO req: solo 1 carrito x usuario
+            var redis = new RedisService();
+            var historial = new CarritoHistorialService();
 
-            var carrito = new DAOBase<CarritoDTO>().ReadAll($"{nameof(CarritoDTO.idUsuario)} = {usuario.id}").FirstOrDefault();
-
-            if (carrito == null)
+            var items = GetCarritoItems(usuario);
+            if (items != null && items.Count > 0)
             {
-                InsertCarrito(usuario.id);
-            }
+                int idPedido = InsertPedido(usuario.UserId, condicionIVA);
 
-            carrito = new DAOBase<CarritoDTO>().ReadAll($"{nameof(CarritoDTO.idUsuario)} = {usuario.id}").FirstOrDefault();
-
-            if (carrito == null)
-            {
-                throw new Exception("ERROR EN CARRITO");
-            }
-
-            return carrito;
-        }
-        [WebMethod]
-        public List<CarritoItem> GetCarritoItems(int idCarrito)
-        {
-            var ret = new List<CarritoItem>();
-
-            var rows = GetCarritoRows(idCarrito);
-            var items = GetItems();
-
-            foreach (var row in rows)
-            {
-                var item = items.Find(x => x.id == row.idItem);
-                ret.Add(CarritoItem.dto2Model(row, item));
-            }
-
-            return ret;
-        }
-        [WebMethod]
-        public void NuevoPedido(CarritoDTO carrito, UsuarioDTO usuario, string condicionIVA)
-        {
-            var items = GetCarritoItems(carrito.id);
-
-            int idPedido = InsertPedido(usuario.id, condicionIVA);
-
-            foreach (var item in items)
-            {
-                InsertPedidoRow(idPedido, item.importe, 21, 0, item.descripcion, item.cantidad);
-                DeleteCarritoRow(item.id);
+                foreach (var item in items)
+                {
+                    InsertPedidoRow(idPedido, item.Importe, 21, 0, item.Descripcion, item.Cantidad);
+                }
+                redis.ClearCarrito(usuario.UserId);
+                historial.BorrarHistorial(usuario.UserId);
             }
         }
         [WebMethod]
-        public List<PedidoDTO> GetPedidosSinFacturar(UsuarioDTO usuario)
+        public List<PedidoDTO> GetPedidosSinFacturar(UserSession usuario)
         {
             string query = $@"SELECT t0.*
                                 FROM Pedido T0
                                 LEFT JOIN Factura T1 on T0.id = T1.{nameof(FacturaDTO.idPedido)}
-                                WHERE T1.id IS NULL";
+                                WHERE T1.id IS NULL AND T0.{nameof(PedidoDTO.idUsuario)} = {usuario.UserId}";
 
             return new DAOBase<PedidoDTO>().ReadQuery(query);
         }
 
         [WebMethod]
-        public void NuevaFactura(PedidoDTO pedido, UsuarioDTO usuario, string condicionPago)
+        public void NuevaFactura(PedidoDTO pedido, UserSession usuario, string condicionPago)
         {
             var rows = GetPedidoRows(pedido.id);
             decimal total = 0;
@@ -584,26 +563,26 @@ namespace Service
                 total += r.cantidad * r.importe * (1 - r.descuento / 100) * (1 + r.IVA / 100);
             }
 
-            InsertFactura(pedido.id, condicionPago, total, usuario.id);
+            InsertFactura(pedido.id, condicionPago, total, usuario.UserId);
             //todo actualizar stock de articulos
         }
 
         [WebMethod]
-        public List<FacturaDTO> GetFacturasSinPagar(UsuarioDTO usuario)
+        public List<FacturaDTO> GetFacturasSinPagar(UserSession usuario)
         {
             string query = $@"SELECT t0.*
                                 FROM Factura T0
                                 LEFT JOIN PagoRow T1 on T0.id = T1.{nameof(PagoRowDTO.idFactura)}
-                                WHERE T1.id IS NULL";
+                                WHERE T1.id IS NULL AND T0.{nameof(PedidoDTO.idUsuario)} = {usuario.UserId}";
 
             return new DAOBase<FacturaDTO>().ReadQuery(query);
         }
 
         [WebMethod]
-        public void NuevoPago(List<FacturaDTO> facturas, UsuarioDTO usuario, decimal total)
+        public void NuevoPago(List<FacturaDTO> facturas, UserSession usuario, decimal total)
         {
 
-            int idPago = InsertPago(total, usuario.id);
+            int idPago = InsertPago(total, usuario.UserId);
 
             foreach (var f in facturas)
             {
@@ -612,9 +591,9 @@ namespace Service
         }
 
         [WebMethod]
-        public List<PagoDTO> GetPagosDeUsuario(UsuarioDTO usuario)
+        public List<PagoDTO> GetPagosDeUsuario(UserSession usuario)
         {
-            return new DAOBase<PagoDTO>().ReadAll($"{nameof(PagoDTO.idUsuario)} = {usuario.id}");
+            return new DAOBase<PagoDTO>().ReadAll($"{nameof(PagoDTO.idUsuario)} = {usuario.UserId}");
         }
 
         [WebMethod]
@@ -622,13 +601,8 @@ namespace Service
         {
             return DAOItemEnriquecido.GetItemEnriquecido(sqlID);
         }
-        enum usuarioCat
-        {
-            LOW,
-            MED,
-            TOP
-        }
         #endregion
+
 
     }
 }

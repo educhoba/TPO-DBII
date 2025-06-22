@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Service.DTO
+namespace Service.Model
 {
-    public class CarritoDTO : DTOBase
+    public class CarritoSession
     {
-        public int idUsuario { get; set; }
+        public int UserId { get; set; }
     }
 }
