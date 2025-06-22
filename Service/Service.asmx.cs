@@ -1,4 +1,5 @@
-﻿using Service.DAO;
+﻿using Service.ChatGPT;
+using Service.DAO;
 using Service.DTO;
 using Service.Model;
 using System;
@@ -26,6 +27,11 @@ namespace Service
         public string HelloWorld()
         {
             return "Hello World";
+        }
+        [WebMethod]
+        public void HelloMongo()
+        {
+            InsertarArticulos.Insertar();
         }
 
         #region CARRITO CRUDL
@@ -611,7 +617,11 @@ namespace Service
             return new DAOBase<PagoDTO>().ReadAll($"{nameof(PagoDTO.idUsuario)} = {usuario.id}");
         }
 
-
+        [WebMethod]
+        public ItemEnriquecido GetItemEnriquecido(int sqlID)
+        {
+            return DAOItemEnriquecido.GetItemEnriquecido(sqlID);
+        }
         enum usuarioCat
         {
             LOW,

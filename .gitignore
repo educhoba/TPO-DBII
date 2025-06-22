@@ -13,3 +13,5 @@ Service/bin/roslyn/
 Service/obj/Debug/
 
 Service/obj/Release/
+
+Service/bin/

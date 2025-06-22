@@ -12,6 +12,12 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="HelloMongo">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloMongoResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetCarrito">
         <s:complexType>
           <s:sequence>
@@ -855,6 +861,61 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetItemEnriquecido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sqlID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemEnriquecidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemEnriquecidoResult" type="tns:ItemEnriquecido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ItemEnriquecido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SqlId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Imagenes" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Videos" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comentarios" type="tns:ArrayOfComentario" />
+          <s:element minOccurs="0" maxOccurs="1" name="Especificaciones" type="tns:ArrayOfEspecificacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="Marca" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfComentario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Comentario" nillable="true" type="tns:Comentario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Comentario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComentarioTexto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Calificacion" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEspecificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Especificacion" nillable="true" type="tns:Especificacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Especificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Valor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -862,6 +923,12 @@
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloMongoSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloMongo" />
+  </wsdl:message>
+  <wsdl:message name="HelloMongoSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloMongoResponse" />
   </wsdl:message>
   <wsdl:message name="GetCarritoSoapIn">
     <wsdl:part name="parameters" element="tns:GetCarrito" />
@@ -1193,10 +1260,20 @@
   <wsdl:message name="GetPagosDeUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:GetPagosDeUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="GetItemEnriquecidoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItemEnriquecido" />
+  </wsdl:message>
+  <wsdl:message name="GetItemEnriquecidoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemEnriquecidoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloMongo">
+      <wsdl:input message="tns:HelloMongoSoapIn" />
+      <wsdl:output message="tns:HelloMongoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCarrito">
       <wsdl:input message="tns:GetCarritoSoapIn" />
@@ -1418,11 +1495,24 @@
       <wsdl:input message="tns:GetPagosDeUsuarioSoapIn" />
       <wsdl:output message="tns:GetPagosDeUsuarioSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetItemEnriquecido">
+      <wsdl:input message="tns:GetItemEnriquecidoSoapIn" />
+      <wsdl:output message="tns:GetItemEnriquecidoSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloMongo">
+      <soap:operation soapAction="http://tempuri.org/HelloMongo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1925,11 +2015,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetItemEnriquecido">
+      <soap:operation soapAction="http://tempuri.org/GetItemEnriquecido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloMongo">
+      <soap12:operation soapAction="http://tempuri.org/HelloMongo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2425,6 +2533,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPagosDeUsuario">
       <soap12:operation soapAction="http://tempuri.org/GetPagosDeUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemEnriquecido">
+      <soap12:operation soapAction="http://tempuri.org/GetItemEnriquecido" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

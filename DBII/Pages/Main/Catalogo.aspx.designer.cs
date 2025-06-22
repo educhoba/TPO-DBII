@@ -69,58 +69,94 @@ namespace DBII.Pages.Main
         protected global::System.Web.UI.WebControls.TextBox tbPrecio;
 
         /// <summary>
-        /// lbFoto control.
+        /// lblNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFoto;
+        protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
-        /// tbFoto control.
+        /// txtNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFoto;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// lbVideo control.
+        /// lblMarca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVideo;
+        protected global::System.Web.UI.WebControls.Label lblMarca;
 
         /// <summary>
-        /// tbVideo control.
+        /// txtMarca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVideo;
+        protected global::System.Web.UI.WebControls.TextBox txtMarca;
 
         /// <summary>
-        /// lbComentarios control.
+        /// lblSqlId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbComentarios;
+        protected global::System.Web.UI.WebControls.Label lblSqlId;
 
         /// <summary>
-        /// tbComentarios control.
+        /// txtSqlId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbComentarios;
+        protected global::System.Web.UI.WebControls.TextBox txtSqlId;
+
+        /// <summary>
+        /// rptImagenes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptImagenes;
+
+        /// <summary>
+        /// rptVideos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptVideos;
+
+        /// <summary>
+        /// rptComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptComentarios;
+
+        /// <summary>
+        /// rptEspecificaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptEspecificaciones;
 
         /// <summary>
         /// btAgregar control.

@@ -32,6 +32,8 @@ namespace DBII.Service {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback HelloMongoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetCarritoOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetCarritosOperationCompleted;
@@ -142,6 +144,8 @@ namespace DBII.Service {
         
         private System.Threading.SendOrPostCallback GetPagosDeUsuarioOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetItemEnriquecidoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -182,6 +186,9 @@ namespace DBII.Service {
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        
+        /// <remarks/>
+        public event HelloMongoCompletedEventHandler HelloMongoCompleted;
         
         /// <remarks/>
         public event GetCarritoCompletedEventHandler GetCarritoCompleted;
@@ -349,6 +356,9 @@ namespace DBII.Service {
         public event GetPagosDeUsuarioCompletedEventHandler GetPagosDeUsuarioCompleted;
         
         /// <remarks/>
+        public event GetItemEnriquecidoCompletedEventHandler GetItemEnriquecidoCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -372,6 +382,32 @@ namespace DBII.Service {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloMongo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void HelloMongo() {
+            this.Invoke("HelloMongo", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void HelloMongoAsync() {
+            this.HelloMongoAsync(null);
+        }
+        
+        /// <remarks/>
+        public void HelloMongoAsync(object userState) {
+            if ((this.HelloMongoOperationCompleted == null)) {
+                this.HelloMongoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHelloMongoOperationCompleted);
+            }
+            this.InvokeAsync("HelloMongo", new object[0], this.HelloMongoOperationCompleted, userState);
+        }
+        
+        private void OnHelloMongoOperationCompleted(object arg) {
+            if ((this.HelloMongoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.HelloMongoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2032,6 +2068,35 @@ namespace DBII.Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetItemEnriquecido", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ItemEnriquecido GetItemEnriquecido(int sqlID) {
+            object[] results = this.Invoke("GetItemEnriquecido", new object[] {
+                        sqlID});
+            return ((ItemEnriquecido)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetItemEnriquecidoAsync(int sqlID) {
+            this.GetItemEnriquecidoAsync(sqlID, null);
+        }
+        
+        /// <remarks/>
+        public void GetItemEnriquecidoAsync(int sqlID, object userState) {
+            if ((this.GetItemEnriquecidoOperationCompleted == null)) {
+                this.GetItemEnriquecidoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetItemEnriquecidoOperationCompleted);
+            }
+            this.InvokeAsync("GetItemEnriquecido", new object[] {
+                        sqlID}, this.GetItemEnriquecidoOperationCompleted, userState);
+        }
+        
+        private void OnGetItemEnriquecidoOperationCompleted(object arg) {
+            if ((this.GetItemEnriquecidoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetItemEnriquecidoCompleted(this, new GetItemEnriquecidoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2098,6 +2163,201 @@ namespace DBII.Service {
             }
             set {
                 this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Especificacion {
+        
+        private string claveField;
+        
+        private string valorField;
+        
+        /// <remarks/>
+        public string Clave {
+            get {
+                return this.claveField;
+            }
+            set {
+                this.claveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Valor {
+            get {
+                return this.valorField;
+            }
+            set {
+                this.valorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Comentario {
+        
+        private string usuarioField;
+        
+        private string comentarioTextoField;
+        
+        private System.DateTime fechaField;
+        
+        private int calificacionField;
+        
+        /// <remarks/>
+        public string Usuario {
+            get {
+                return this.usuarioField;
+            }
+            set {
+                this.usuarioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ComentarioTexto {
+            get {
+                return this.comentarioTextoField;
+            }
+            set {
+                this.comentarioTextoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Fecha {
+            get {
+                return this.fechaField;
+            }
+            set {
+                this.fechaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Calificacion {
+            get {
+                return this.calificacionField;
+            }
+            set {
+                this.calificacionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ItemEnriquecido {
+        
+        private string idField;
+        
+        private int sqlIdField;
+        
+        private string nombreField;
+        
+        private string[] imagenesField;
+        
+        private string[] videosField;
+        
+        private Comentario[] comentariosField;
+        
+        private Especificacion[] especificacionesField;
+        
+        private string marcaField;
+        
+        /// <remarks/>
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int SqlId {
+            get {
+                return this.sqlIdField;
+            }
+            set {
+                this.sqlIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string[] Imagenes {
+            get {
+                return this.imagenesField;
+            }
+            set {
+                this.imagenesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string[] Videos {
+            get {
+                return this.videosField;
+            }
+            set {
+                this.videosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Comentario[] Comentarios {
+            get {
+                return this.comentariosField;
+            }
+            set {
+                this.comentariosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Especificacion[] Especificaciones {
+            get {
+                return this.especificacionesField;
+            }
+            set {
+                this.especificacionesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Marca {
+            get {
+                return this.marcaField;
+            }
+            set {
+                this.marcaField = value;
             }
         }
     }
@@ -2557,6 +2817,10 @@ namespace DBII.Service {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void HelloMongoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -3346,6 +3610,32 @@ namespace DBII.Service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((PagoDTO[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetItemEnriquecidoCompletedEventHandler(object sender, GetItemEnriquecidoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetItemEnriquecidoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetItemEnriquecidoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ItemEnriquecido Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ItemEnriquecido)(this.results[0]));
             }
         }
     }
